@@ -30,6 +30,15 @@
     [dir="rtl"] .rtl-flip { transform: scaleX(-1); }
     #mobileMenu { transition: all 0.3s ease-in-out; }
     .glass-effect { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.05); }
+
+    .before-after-card:hover .after-image {
+  clip-path: inset(0 0 0 0);
+}
+
+.after-image {
+  clip-path: inset(0 0 0 100%);
+  transition: clip-path 0.8s cubic-bezier(0.77,0,0.175,1);
+}
   </style>
 </head>
 
@@ -355,6 +364,72 @@
             </div>
         </div>
     </section>
+    <!-- Before & After Renovation -->
+<section class="py-24 bg-offWhite dark:bg-secondary/50 relative overflow-hidden transition-colors">
+  <div class="absolute inset-0 architectural-grid opacity-20 pointer-events-none"></div>
+
+  <div class="mx-auto max-w-7xl px-4 lg:px-8 relative z-10">
+
+    <!-- Section Heading -->
+    <div class="max-w-2xl mb-16 text-left">
+      <h2 class="text-accent font-black uppercase tracking-widest text-sm mb-4">
+        Structural Metamorphosis
+      </h2>
+
+      <h3 class="text-4xl md:text-5xl font-bold text-primary dark:text-white tracking-tighter uppercase leading-none">
+        The Evolution of Space
+      </h3>
+
+      <p class="text-gray-500 mt-6 leading-relaxed">
+        Observe the dramatic structural transition from legacy builds to Growwpark masterpieces.
+      </p>
+    </div>
+
+    <!-- Single Card -->
+<div class="before-after-card relative group cursor-pointer max-w-4xl mx-auto">      <div class="relative rounded-[3.5rem] overflow-hidden shadow-2xl aspect-video bg-gray-200">
+
+        <!-- Before -->
+        <img src="/assets/pgr1.jpg"
+          class="absolute inset-0 w-full h-full object-cover grayscale brightness-50"
+          alt="Before">
+
+        <!-- After -->
+        <img src="/assets/pgr2.jpg"
+          class="after-image absolute inset-0 w-full h-full object-cover"
+          alt="After">
+
+        <!-- Icon -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-2xl transition-transform group-hover:scale-0">
+            <i class="fas fa-arrows-left-right text-primary"></i>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Card Info -->
+      <div class="mt-8 flex justify-between items-center px-6 uppercase">
+
+        <div>
+          <h4 class="text-2xl font-bold dark:text-white mb-1 tracking-tighter">
+            Victorian Shell Retrofit
+          </h4>
+
+          <p class="text-accent font-bold text-[10px] tracking-[0.3em]">
+            Full Structural Contracting
+          </p>
+        </div>
+
+        <span class="text-gray-400 font-black text-xs italic">
+          LOG #442
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
     <section id="calculator" class="py-20 bg-white dark:bg-secondary">
   <div class="mx-auto max-w-6xl px-4 lg:px-8">
