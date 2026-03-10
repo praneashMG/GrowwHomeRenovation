@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Groww Home Renovation & Contracting</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1B4332',    // Deep Forest Green
+            accent: '#D4A373',     // Warm Sand
+            secondary: '#111111',  // Deep Black
+            offWhite: '#F8F9FA'
+          },
+          fontFamily: {
+            'display': ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    [dir="rtl"] .rtl-flip { transform: scaleX(-1); }
+    #mobileMenu { transition: all 0.3s ease-in-out; }
+    .glass-effect { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.05); }
+    input:focus, select:focus, textarea:focus { border-color: #D4A373 !important; ring: 2px solid rgba(212, 163, 115, 0.2); outline: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    .architectural-grid { background-image: radial-gradient(rgba(27, 67, 50, 0.1) 1px, transparent 1px); background-size: 30px 30px; }
+  </style>
+</head>
+
+<body class="bg-white text-secondary dark:bg-secondary dark:text-gray-100 transition-colors duration-300" data-dir="ltr">
+
+  <!-- START OF HEADER (UNMODIFIED) -->
+  <nav id="navbar" class="sticky top-0 z-50 transition-colors duration-300 bg-white text-secondary border-b border-gray-100 dark:bg-secondary dark:text-white dark:border-white/10 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
+      <a href="index.html" class="flex items-center gap-2 shrink-0 group">
+        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fas fa-hammer text-lg"></i>
+        </span>
+        <div class="leading-tight">
+          <span class="block text-xl font-bold tracking-tight text-accent">Groww</span>
+          <span class="block text-xs font-semibold text-accent uppercase tracking-widest">BuildNest</span>
+        </div>
+      </a>
+      <div class="hidden lg:flex items-center gap-2">
+        <ul class="flex items-center gap-0.5 text-xs font-semibold">
+          <li class="relative group">
+            <button class="home-trigger flex items-center gap-1 rounded-md px-2.5 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">
+              <span>Home</span>
+              <i class="fas fa-chevron-down text-[9px]"></i>
+            </button>
+            <ul class="invisible absolute left-0 mt-1.5 w-44 rounded-md bg-white border border-gray-100 dark:bg-secondary dark:border-white/10 p-1.5 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100 z-50">
+              <li><a href="index.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">Home 1</a></li>
+              <li><a href="homepage2.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">Home 2</a></li>
+            </ul>
+          </li>
+          <li><a href="service.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Services</a></li>
+          <li><a href="blog.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Blog</a></li>
+          <li><a href="gallery.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Gallery</a></li>
+          <li><a href="aboutus.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">About</a></li>
+          <li><a href="contact.html" class="block rounded-md px-3 py-1.5 bg-accent text-white font-bold shadow-sm transition-colors">Contact</a></li>
+          <li class="relative group">
+            <button class="flex items-center gap-1 rounded-md px-2.5 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">
+              <span>Dashboard</span>
+              <i class="fas fa-chevron-down text-[9px] group-hover:rotate-180 transition-transform"></i>
+            </button>
+            <ul class="invisible absolute left-0 mt-1.5 w-48 rounded-md bg-white border border-gray-100 dark:bg-secondary dark:border-white/10 p-1.5 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100 z-50">
+              <li><a href="admin.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">Admin Panel</a></li>
+              <li><a href="user.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">User Dashboard</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="ml-4 flex items-center gap-3 border-l border-gray-200 dark:border-white/10 pl-4">
+          <button id="themeToggleDesktop" class="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 dark:border-white/10 hover:bg-primary hover:text-white transition-all">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button id="rtlToggleDesktop" class="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 dark:border-white/10 hover:bg-primary hover:text-white transition-all">
+            <i class="fas fa-exchange-alt"></i>
+          </button>
+          <a href="login.html" class="ml-2 inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2 text-sm font-bold text-white hover:opacity-90 transition-transform active:scale-95 shadow-lg shadow-accent/20">
+            <i class="fas fa-user-plus text-xs"></i>
+            <span>Register</span>
+          </a>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 lg:hidden">
+        <button id="themeToggleMobile" class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 dark:border-white/10">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button id="hamburger" class="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-md bg-gray-100 dark:bg-white/5" aria-label="Toggle Menu">
+          <span id="line1" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+          <span id="line2" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+          <span id="line3" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden border-t border-gray-100 bg-white dark:bg-secondary dark:border-white/5 lg:hidden overflow-hidden transition-all duration-300">
+      <div class="flex flex-col gap-1 p-4">
+        <details class="group">
+            <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-lg font-medium list-none hover:bg-gray-50 dark:hover:bg-white/5">
+  <div class="flex items-center gap-4">
+  <i class="fas fa-home text-accent w-6"></i>
+  <span>Home</span>
+</div>
+  <i class="fas fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+</summary>
+
+<div class="mt-1 flex flex-col gap-1 pl-14 text-gray-500 dark:text-gray-400">
+  <a href="index.html" class="py-2 hover:text-accent">Home 1</a>
+  <a href="homepage2.html" class="py-2 hover:text-accent">Home 2</a>
+</div>
+</details>
+        <a href="service.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-concierge-bell text-accent w-6"></i> Services
+        </a>
+        <a href="blog.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-blog text-accent w-6"></i> Blog
+        </a>
+          <a href="gallery.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+  <i class="fas fa-image text-accent w-6"></i> Gallery
+</a>
+        <a href="aboutus.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-info-circle text-accent w-6"></i> About Us
+        </a>
+       <a href="contact.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-bold bg-accent text-white shadow-md">
+  <i class="fas fa-envelope w-6"></i> Contact
+</a>
+        <details class="group">
+          <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-lg font-medium list-none hover:bg-gray-50 dark:hover:bg-white/5 transition">
+            <div class="flex items-center gap-4"><i class="fas fa-tachometer-alt text-accent w-6"></i><span>Dashboard</span></div>
+            <i class="fas fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="mt-1 flex flex-col gap-1 pl-14 text-gray-500 dark:text-gray-400">
+            <a href="admin.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition">
+              <i class="fas fa-user-shield text-accent w-6"></i> Admin Panel
+            </a>
+            <a href="user.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition">
+              <i class="fas fa-user text-accent w-6"></i> User Dashboard
+            </a>
+          </div>
+        </details>
+        <div class="mt-4 pt-4 border-t border-gray-100 dark:border-white/10">
+          <button id="rtlToggleMobile" class="flex w-full items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+            <i class="fas fa-exchange-alt text-accent text-accent w-6"></i> Switch Direction (RTL)
+          </button>
+          <a href="login.html" class="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-accent py-4 text-center text-lg font-bold text-white active:scale-95 transition-transform">
+            <i class="fas fa-user-plus"></i> Register
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- END OF HEADER -->
+
+  <main>
+    <!-- (1) Redesigned Contact Hero Section -->
+<section class="relative pt-6 lg:pt-12 pb-24 overflow-hidden bg-offWhite dark:bg-secondary transition-colors duration-300 flex items-center">
+  <!-- Blueprint Grid Background -->
+  <div class="absolute inset-0 architectural-grid opacity-40 pointer-events-none"></div>
+
+  <div class="mx-auto max-w-7xl px-4 lg:px-8 relative z-10 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+      <!-- Left Column -->
+      <div class="lg:col-span-7 order-1 text-center lg:text-left">
+
+        <div class="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-primary/5 dark:bg-white/5 border border-primary/10 dark:border-accent/20 mb-8">
+          <span class="flex h-2 w-2 rounded-full bg-accent animate-pulse"></span>
+          <span class="text-xs font-bold uppercase tracking-widest text-primary dark:text-accent">
+            Available for New Projects
+          </span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-7xl font-black text-primary dark:text-white leading-[1.05] tracking-tight mb-8">
+          Let's Map Out Your <br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/70">
+            Masterpiece
+          </span>.
+        </h1>
+
+        <p class="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto lg:mx-0 leading-relaxed mb-10 border-l-0 lg:border-l-4 border-accent lg:pl-6">
+          Our expert contractors and designers are ready to translate your vision into a structural reality. Start your home renovation journey with a precision-led consultation.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6">
+
+          <a href="#inquiry"
+            class="w-full sm:w-auto bg-primary text-white px-10 py-5 rounded-2xl font-black hover:bg-accent transition-all shadow-xl shadow-primary/20 text-xs tracking-widest uppercase text-center">
+            START YOUR PROJECT
+          </a>
+
+          <!-- Client Avatars -->
+          <div class="flex -space-x-3 overflow-hidden">
+            <img class="h-10 w-10 rounded-full ring-2 ring-white dark:ring-secondary object-cover"
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100"
+              alt="Client">
+
+            <img class="h-10 w-10 rounded-full ring-2 ring-white dark:ring-secondary object-cover"
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100"
+              alt="Client">
+
+            <div class="h-10 w-10 flex items-center justify-center rounded-full bg-accent text-white text-[10px] font-bold ring-2 ring-white dark:ring-secondary">
+              +500
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="lg:col-span-5 order-2 relative w-full">
+
+        <div class="relative rounded-[3rem] overflow-hidden shadow-2xl border-4 md:border-8 border-white dark:border-white/5 aspect-square max-w-md mx-auto lg:max-w-none">
+
+          <img
+            src="/assets/hc1.jpg"
+            class="w-full h-full object-cover"
+            alt="Architectural Plan">
+
+          <div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+
+          <!-- Glass Stat Card -->
+          <div class="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 bg-white/90 dark:bg-secondary/90 backdrop-blur-md p-5 sm:p-6 rounded-3xl shadow-xl">
+
+            <p class="text-accent font-black text-[10px] uppercase tracking-widest mb-1">
+              Site Handover Rate
+            </p>
+
+            <div class="flex items-center gap-3">
+              <span class="text-2xl sm:text-3xl font-black text-primary dark:text-white">
+                98%
+              </span>
+
+              <div class="flex-1 h-2 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-accent w-[98%] animate-pulse"></div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</section>
+    <!-- (2) Redesigned Contact Information Section -->
+    <section class="py-24 bg-white dark:bg-secondary">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Office -->
+          <div class="group relative p-10 rounded-3xl bg-offWhite dark:bg-white/5 border border-transparent hover:border-accent transition-all hover:-translate-y-2">
+            <div class="text-accent mb-6 transition-transform group-hover:scale-110"><i class="fas fa-map-location-dot text-4xl"></i></div>
+            <h4 class="text-xl font-bold dark:text-white mb-3">Our Design Hub</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">No. 24, Bangalore Main Road, Hosur, Tamil Nadu 635109</p>
+          </div>
+          <!-- Contact -->
+          <div class="group relative p-10 rounded-3xl bg-offWhite dark:bg-white/5 border border-transparent hover:border-accent transition-all hover:-translate-y-2">
+            <div class="text-accent mb-6 transition-transform group-hover:scale-110"><i class="fas fa-headset text-4xl"></i></div>
+            <h4 class="text-xl font-bold dark:text-white mb-3">Instant Support</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400 font-bold mb-1">+91 98765 43210</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400">info@growwrenovations.in</p>
+          </div>
+          <!-- Service Area -->
+          <div class="group relative p-10 rounded-3xl bg-offWhite dark:bg-white/5 border border-transparent hover:border-accent transition-all hover:-translate-y-2">
+            <div class="text-accent mb-6 transition-transform group-hover:scale-110"><i class="fas fa-draw-polygon text-4xl"></i></div>
+            <h4 class="text-xl font-bold dark:text-white mb-3">Service Areas</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Bangalore (East/West), Hosur, Chennai, & Tier-2 cities in South India.</p>
+          </div>
+          <!-- Timing -->
+          <div class="group relative p-10 rounded-3xl bg-offWhite dark:bg-white/5 border border-transparent hover:border-accent transition-all hover:-translate-y-2">
+            <div class="text-accent mb-6 transition-transform group-hover:scale-110"><i class="fas fa-business-time text-4xl"></i></div>
+            <h4 class="text-xl font-bold dark:text-white mb-3">Working Hours</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Mon - Sat: 9 AM to 7 PM</p>
+            <p class="text-xs text-accent font-bold uppercase">Emergency 24/7 for Clients</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- (3) Redesigned Project Inquiry Contact Form Section -->
+ <!-- Project Inquiry Contact Form Section -->
+<section id="inquiry" class="py-20 bg-offWhite dark:bg-white/5">
+  <div class="mx-auto max-w-7xl px-4 lg:px-8">
+
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Left Content -->
+      <div class="space-y-6">
+
+        <span class="text-accent font-black uppercase tracking-widest text-xs">
+          Start Your Quote
+        </span>
+
+        <h2 class="text-4xl font-bold text-primary dark:text-white leading-tight">
+          Tell us about your next build
+        </h2>
+
+        <p class="text-gray-600 dark:text-gray-400 max-w-md">
+          Submit your project details and our senior engineer will contact you
+          within 24 hours to arrange an inspection.
+        </p>
+
+        <div class="space-y-4 pt-4">
+
+          <div class="flex items-center gap-4">
+            <span class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
+              <i class="fas fa-check"></i>
+            </span>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Transparent Bill of Quantities (BOQ)
+            </p>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <span class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
+              <i class="fas fa-check"></i>
+            </span>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Certified Structural Audit
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Form -->
+      <div class="bg-white dark:bg-secondary rounded-3xl shadow-xl p-8 md:p-10 border border-gray-100 dark:border-white/10">
+
+        <form id="projectInquiryForm" class="space-y-6"
+          onsubmit="event.preventDefault(); document.getElementById('successMsg').classList.remove('hidden');">
+
+          <div class="grid md:grid-cols-2 gap-5">
+
+            <input type="text" required placeholder="Full Name"
+              class="w-full bg-offWhite dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 dark:text-white">
+
+            <input type="email" required placeholder="Email Address"
+              class="w-full bg-offWhite dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 dark:text-white">
+
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-5">
+
+            <select
+              class="w-full bg-offWhite dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 dark:text-white">
+
+              <option>Full Home Renovation</option>
+              <option>Kitchen & Bath Remodel</option>
+              <option>Structural Contracting</option>
+              <option>Interior Fit-Out</option>
+              <option>Industrial Site Work</option>
+
+            </select>
+
+            <select
+              class="w-full bg-offWhite dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 dark:text-white">
+
+              <option>$5k - $20k</option>
+              <option>$20k - $50k</option>
+              <option>$50k+</option>
+
+            </select>
+
+          </div>
+
+          <textarea rows="4" placeholder="Describe your project..."
+            class="w-full bg-offWhite dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 dark:text-white"></textarea>
+
+          <button type="submit"
+            class="w-full bg-accent text-white font-bold py-4 rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2">
+            Submit Inquiry
+            <i class="fas fa-arrow-right text-xs rtl-flip"></i>
+          </button>
+
+          <div id="successMsg"
+            class="hidden p-3 rounded-lg bg-green-500/10 border border-green-500/20 text-green-600 text-center font-semibold text-sm">
+            Thank you! We'll contact you shortly.
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- Consultation CTA Section -->
+<section class="py-24 bg-white dark:bg-secondary relative overflow-hidden transition-colors duration-300">
+
+  <!-- Decorative Glow -->
+  <div class="absolute -top-32 -left-32 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+  <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-primary/10 dark:bg-accent/10 rounded-full blur-3xl"></div>
+
+  <div class="mx-auto max-w-6xl px-4 lg:px-8">
+
+    <div class="relative rounded-[2.5rem] bg-secondary dark:bg-white/5 text-center px-8 md:px-16 py-16 shadow-2xl overflow-hidden">
+
+      <!-- Subtle grid -->
+      <div class="absolute inset-0 architectural-grid opacity-[0.08] pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-3xl mx-auto">
+
+        <span class="text-accent font-bold uppercase tracking-widest text-xs">
+          Free Consultation
+        </span>
+
+        <h2 class="text-4xl md:text-5xl font-bold text-white dark:text-white mt-4 mb-6 leading-tight">
+          Ready to Start Your
+          <span class="text-accent">Dream Renovation?</span>
+        </h2>
+
+        <p class="text-gray-300 dark:text-gray-400 text-lg leading-relaxed mb-10">
+          Schedule a consultation with our engineers and receive a complete
+          feasibility review, structural insights, and a renovation estimate
+          tailored to your project.
+        </p>
+
+        <!-- Benefits -->
+        <div class="flex flex-wrap justify-center gap-8 mb-10 text-sm text-gray-400 dark:text-gray-500">
+
+          <div class="flex items-center gap-2">
+            <i class="fas fa-check text-accent"></i>
+            Free Site Visit
+          </div>
+
+          <div class="flex items-center gap-2">
+            <i class="fas fa-check text-accent"></i>
+            Budget Estimate
+          </div>
+
+          <div class="flex items-center gap-2">
+            <i class="fas fa-check text-accent"></i>
+            Structural Guidance
+          </div>
+
+        </div>
+
+        <!-- CTA Button -->
+        <a href="contact.html"
+           class="inline-flex items-center gap-3 bg-accent text-white px-10 py-4 rounded-xl font-bold text-lg shadow-xl hover:scale-105 transition">
+
+          <i class="fas fa-calendar-plus"></i>
+          Book Free Consultation
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+    <!-- (5) Redesigned Map Section -->
+    <section class="py-24 bg-white dark:bg-secondary">
+       <div class="mx-auto max-w-7xl px-4 lg:px-8">
+          <div class="flex flex-col lg:flex-row gap-8 items-center">
+             <div class="lg:w-2/3 w-full">
+                <div class="rounded-[3rem] overflow-hidden shadow-2xl border-[12px] border-offWhite dark:border-white/5 h-[500px]">
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15579.549219363654!2d77.818456!3d12.729156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae769911956e17%3A0x6d9f38f15b6d5f78!2sHosur%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="grayscale contrast-125 dark:invert dark:hue-rotate-180"></iframe>
+                </div>
+             </div>
+             <div class="lg:w-1/3 w-full bg-primary p-12 rounded-[3rem] text-white self-stretch flex flex-col justify-center shadow-xl">
+                <h4 class="text-accent font-black uppercase text-xs tracking-widest mb-6">Our Headquarters</h4>
+                <h5 class="text-3xl font-bold mb-6 leading-snug">Located at the Heart of Construction Hub</h5>
+                <p class="text-gray-300 mb-8">Strategic position allows our logistics teams to reach site locations in Bangalore and Hosur within 45 minutes.</p>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4 text-accent font-bold">
+                        <i class="fas fa-truck-ramp-box"></i>
+                        <span>Central Material Depot</span>
+                    </div>
+                    <div class="flex items-center gap-4 text-accent font-bold">
+                        <i class="fas fa-user-shield"></i>
+                        <span>24/7 Site Monitoring Center</span>
+                    </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- (6) Redesigned Renovation FAQ Section -->
+    <section class="py-24 bg-offWhite dark:bg-white/5">
+       <div class="mx-auto max-w-4xl px-4 lg:px-8">
+          <div class="text-center mb-16">
+             <h2 class="text-accent font-black uppercase tracking-widest text-sm mb-4">Contracting Intelligence</h2>
+             <h3 class="text-4xl md:text-5xl font-bold text-primary dark:text-white">Expert FAQ</h3>
+          </div>
+          
+          <div class="space-y-6">
+             <!-- FAQ 1 -->
+             <details class="group bg-white dark:bg-secondary rounded-3xl shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden transition-all">
+                <summary class="flex items-center justify-between p-8 cursor-pointer list-none">
+                   <div class="flex items-center gap-4">
+                      <span class="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-xs italic">01</span>
+                      <span class="text-lg font-bold dark:text-white">Do you manage structural permits for renovations?</span>
+                   </div>
+                   <span class="text-accent group-open:rotate-45 transition-transform"><i class="fas fa-plus"></i></span>
+                </summary>
+                <div class="px-8 pb-8 text-gray-500 dark:text-gray-400 leading-relaxed pt-2">
+                   Yes, our contracting division handles all municipal approvals, structural stability certifications, and load-bearing wall removal permits to ensure legal and physical safety.
+                </div>
+             </details>
+             <!-- FAQ 2 -->
+             <details class="group bg-white dark:bg-secondary rounded-3xl shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden transition-all">
+                <summary class="flex items-center justify-between p-8 cursor-pointer list-none">
+                   <div class="flex items-center gap-4">
+                      <span class="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-xs italic">02</span>
+                      <span class="text-lg font-bold dark:text-white">How do we track the progress of our site?</span>
+                   </div>
+                   <span class="text-accent group-open:rotate-45 transition-transform"><i class="fas fa-plus"></i></span>
+                </summary>
+                <div class="px-8 pb-8 text-gray-500 dark:text-gray-400 leading-relaxed pt-2">
+                   We provide all clients with access to a digital dashboard where daily site logs, photos, and material arrival reports are uploaded by our project managers in real-time.
+                </div>
+             </details>
+             <!-- FAQ 3 -->
+             <details class="group bg-white dark:bg-secondary rounded-3xl shadow-sm border border-gray-100 dark:border-white/10 overflow-hidden transition-all">
+                <summary class="flex items-center justify-between p-8 cursor-pointer list-none">
+                   <div class="flex items-center gap-4">
+                      <span class="w-8 h-8 rounded-full bg-accent/20 text-accent flex items-center justify-center font-bold text-xs italic">03</span>
+                      <span class="text-lg font-bold dark:text-white">What is your policy on material wastage?</span>
+                   </div>
+                   <span class="text-accent group-open:rotate-45 transition-transform"><i class="fas fa-plus"></i></span>
+                </summary>
+                <div class="px-8 pb-8 text-gray-500 dark:text-gray-400 leading-relaxed pt-2">
+                   Groww Builders follows strict green-contracting guidelines. We minimize wastage through precision measurement and ensure that 100% of construction debris is recycled at authorized plants.
+                </div>
+             </details>
+          </div>
+       </div>
+    </section>
+  </main>
+
+  <!-- START OF FOOTER (UNMODIFIED) -->
+  <footer class="bg-secondary pt-20 pb-10 text-white">
+    <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-white/10 pb-16">
+        <div>
+          <a href="#" class="flex items-center gap-3 mb-6">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg">
+              <i class="fas fa-hammer text-lg"></i>
+            </span>
+            <div class="leading-tight">
+              <span class="block text-xl font-bold tracking-tight text-accent">Groww</span>
+              <span class="block text-xs font-semibold text-accent uppercase tracking-widest">BuildNest</span>
+            </div>
+          </a>
+          <p class="text-gray-400 mb-6 text-sm">Transforming spaces with quality craftsmanship and trusted expertise.</p>
+          <div class="flex gap-3">
+            <a href="#" class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-secondary transition-all"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-secondary transition-all"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-secondary transition-all"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Quick Links</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="index.html" class="block hover:text-accent transition-colors">Home</a></li>
+            <li><a href="service.html" class="block hover:text-accent transition-colors">Services</a></li>
+            <li><a href="blog.html" class="block hover:text-accent transition-colors">Blog</a></li>
+            <li><a href="aboutus.html" class="block hover:text-accent transition-colors">About Us</a></li>
+            <li><a href="contact.html" class="block hover:text-accent transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold mb-6">Contact Us</h4>
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center">
+                <i class="fas fa-map-marker-alt text-accent"></i>
+              </div>
+              <div class="text-gray-400 text-xs">No. 24, Bangalore Main Road<br>Hosur, Tamil Nadu 635109</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center">
+                <i class="fas fa-phone text-accent"></i>
+              </div>
+              <div class="text-gray-400 text-xs">+91 98765 43210</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center">
+                <i class="fas fa-envelope text-accent"></i>
+              </div>
+              <div class="text-gray-400 text-xs">info@growwrenovations.in</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold mb-6">Stay Inspired</h4>
+          <p class="text-gray-400 mb-4 text-xs">Discover smart renovation ideas and premium construction insights from our experts.</p>
+          <form class="space-y-4" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Your email address" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-accent focus:outline-none text-white text-sm">
+            <button type="submit" class="w-full bg-accent text-white font-bold py-3 rounded-lg hover:opacity-90 transition-colors text-sm">Subscribe Today</button>
+          </form>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm">
+        <div>© 2026 Groww Builders Group. All rights reserved.</div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-accent transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-accent transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-accent transition-colors">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const l1 = document.getElementById('line1');
+    const l2 = document.getElementById('line2');
+    const l3 = document.getElementById('line3');
+
+    // Menu Toggle Logic
+    hamburger.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      if (!isHidden) {
+        l1.style.transform = 'translateY(8px) rotate(45deg)';
+        l2.style.opacity = '0';
+        l3.style.transform = 'translateY(-8px) rotate(-45deg)';
+      } else {
+        l1.style.transform = 'none';
+        l2.style.opacity = '1';
+        l3.style.transform = 'none';
+      }
+    });
+
+    // Theme Logic
+    const themeBtns = [document.getElementById('themeToggleDesktop'), document.getElementById('themeToggleMobile')];
+    function setTheme(isDark) {
+      if (isDark) {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeBtns.forEach(btn => btn.innerHTML = '<i class="fas fa-sun"></i>');
+      } else {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        themeBtns.forEach(btn => btn.innerHTML = '<i class="fas fa-moon"></i>');
+      }
+    }
+    themeBtns.forEach(btn => btn.addEventListener('click', () => setTheme(!htmlEl.classList.contains('dark'))));
+    setTheme(localStorage.getItem('theme') === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    // RTL Logic
+    const rtlBtns = [document.getElementById('rtlToggleDesktop'), document.getElementById('rtlToggleMobile')];
+    rtlBtns.forEach(btn => btn.addEventListener('click', () => {
+      const currentDir = bodyEl.getAttribute('dir') || 'ltr';
+      bodyEl.setAttribute('dir', currentDir === 'ltr' ? 'rtl' : 'ltr');
+    }));
+  </script>
+</body>
+</html>

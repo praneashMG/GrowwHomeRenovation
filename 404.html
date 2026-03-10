@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - Page Not Found | Growwpark BuildNest</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1B4332',    // Deep Forest Green
+            accent: '#D4A373',     // Warm Sand
+            secondary: '#111111',  // Deep Black
+            offWhite: '#F8F9FA'
+          },
+          fontFamily: {
+            'display': ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    [dir="rtl"] .rtl-flip { transform: scaleX(-1); }
+    #mobileMenu { transition: all 0.3s ease-in-out; }
+    .glass-effect { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.05); }
+    .blueprint-grid { 
+        background-image: radial-gradient(rgba(212, 163, 115, 0.2) 1px, transparent 1px); 
+        background-size: 30px 30px; 
+    }
+  </style>
+</head>
+
+<body class="bg-white text-secondary dark:bg-secondary dark:text-gray-100 transition-colors duration-300 flex flex-col min-h-screen" data-dir="ltr">
+
+  <!-- START OF HEADER (EXACTLY AS PROVIDED) -->
+  <nav id="navbar" class="sticky top-0 z-50 transition-colors duration-300 bg-white text-secondary border-b border-gray-100 dark:bg-secondary dark:text-white dark:border-white/10 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
+      <a href="index.html" class="flex items-center gap-2 shrink-0 group">
+        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fas fa-hammer text-lg"></i>
+        </span>
+        <div class="leading-tight">
+          <span class="block text-xl font-bold tracking-tight text-accent">Groww</span>
+          <span class="block text-xs font-semibold text-primary dark:text-accent uppercase tracking-widest text-left rtl:text-right">
+            <span class="block text-xs font-semibold text-accent uppercase tracking-widest">BuildNest</span>
+          </span>
+        </div>
+      </a>
+      <div class="hidden lg:flex items-center gap-2">
+        <ul class="flex items-center gap-0.5 text-xs font-semibold">
+          <li class="relative group">
+            <button class="home-trigger flex items-center gap-1 rounded-md px-2.5 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">
+              <span>Home</span>
+              <i class="fas fa-chevron-down text-[9px]"></i>
+            </button>
+            <ul class="invisible absolute left-0 mt-1.5 w-44 rounded-md bg-white border border-gray-100 dark:bg-secondary dark:border-white/10 p-1.5 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100 z-50">
+              <li><a href="index.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">Home 1</a></li>
+              <li><a href="homepage2.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">Home 2</a></li>
+            </ul>
+          </li>
+          <li><a href="service.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Services</a></li>
+          <li><a href="blog.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Blog</a></li>
+          <li><a href="gallery.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Gallery</a></li>
+          <li><a href="aboutus.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">About</a></li>
+          <li><a href="contact.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Contact</a></li>
+          <li class="relative group">
+            <button class="flex items-center gap-1 rounded-md px-2.5 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">
+              <span>Dashboard</span>
+              <i class="fas fa-chevron-down text-[9px] group-hover:rotate-180 transition-transform"></i>
+            </button>
+            <ul class="invisible absolute left-0 mt-1.5 w-48 rounded-md bg-white border border-gray-100 dark:bg-secondary dark:border-white/10 p-1.5 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100 z-50">
+              <li><a href="admin.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">Admin Panel</a></li>
+              <li><a href="user.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">User Dashboard</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="ml-4 flex items-center gap-3 border-l border-gray-200 dark:border-white/10 pl-4">
+          <button id="themeToggleDesktop" class="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 dark:border-white/10 hover:bg-primary hover:text-white transition-all">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button id="rtlToggleDesktop" class="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 dark:border-white/10 hover:bg-primary hover:text-white transition-all">
+            <i class="fas fa-exchange-alt"></i>
+          </button>
+          <a href="login.html" class="ml-2 inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2 text-sm font-bold text-white hover:opacity-90 transition-transform active:scale-95 shadow-lg shadow-accent/20">
+            <i class="fas fa-user-plus text-xs"></i>
+            <span>Register</span>
+          </a>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 lg:hidden">
+        <button id="themeToggleMobile" class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 dark:border-white/10">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button id="hamburger" class="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-md bg-gray-100 dark:bg-white/5" aria-label="Toggle Menu">
+          <span id="line1" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+          <span id="line2" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+          <span id="line3" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden border-t border-gray-100 bg-white dark:bg-secondary dark:border-white/5 lg:hidden overflow-hidden transition-all duration-300">
+      <div class="flex flex-col gap-1 p-4 text-left rtl:text-right">
+        <details class="group">
+          <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-lg font-bold list-none bg-accent text-white shadow-md">
+            <div class="flex items-center gap-4"><i class="fas fa-home w-6"></i><span>Home</span></div>
+            <i class="fas fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="mt-1 flex flex-col gap-1 pl-14 text-gray-500 dark:text-gray-400">
+            <a href="index.html" class="py-2 hover:text-accent">Home 1</a>
+            <a href="homepage2.html" class="py-2 hover:text-accent">Home 2</a>
+          </div>
+        </details>
+        <a href="service.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-concierge-bell text-accent w-6"></i> Services
+        </a>
+        <a href="blog.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-blog text-accent w-6"></i> Blog
+        </a>
+        <a href="gallery.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-image text-accent w-6"></i> Gallery
+        </a>
+        <a href="aboutus.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-info-circle text-accent w-6"></i> About Us
+        </a>
+        <a href="contact.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+          <i class="fas fa-envelope text-accent w-6"></i> Contact
+        </a>
+        <details class="group">
+          <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-lg font-medium list-none hover:bg-gray-50 dark:hover:bg-white/5 transition">
+            <div class="flex items-center gap-4"><i class="fas fa-tachometer-alt text-accent w-6"></i> <span>Dashboard</span></div>
+            <i class="fas fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="mt-1 flex flex-col gap-1 pl-14 text-gray-500 dark:text-gray-400">
+            <a href="admin.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition">
+              <i class="fas fa-user-shield text-accent w-6"></i> Admin Panel
+            </a>
+            <a href="user.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition">
+              <i class="fas fa-user text-accent w-6"></i> User Dashboard
+            </a>
+          </div>
+        </details>
+        <div class="mt-4 pt-4 border-t border-gray-100 dark:border-white/10">
+          <button id="rtlToggleMobile" class="flex w-full items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+            <i class="fas fa-exchange-alt text-accent w-6"></i> Switch Direction (RTL)
+          </button>
+          <a href="login.html" class="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-accent py-4 text-center text-lg font-bold text-white active:scale-95 transition-transform">
+            <i class="fas fa-user-plus"></i> Register
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- END OF HEADER -->
+
+  <!-- 404 MAIN CONTENT -->
+  <main class="flex-grow flex items-center justify-center py-20 relative overflow-hidden">
+    <!-- Blueprint grid background -->
+    <div class="absolute inset-0 blueprint-grid opacity-30 pointer-events-none"></div>
+
+    <div class="mx-auto max-w-4xl px-4 text-center relative z-10">
+      <div class="relative inline-block mb-8">
+        <!-- 404 Number with structural feel -->
+        <h1 class="text-[120px] md:text-[200px] font-black leading-none text-primary/10 dark:text-white/5 select-none">404</h1>
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-accent flex items-center justify-center text-white shadow-2xl animate-bounce">
+                <i class="fas fa-triangle-exclamation text-4xl md:text-5xl"></i>
+            </div>
+        </div>
+      </div>
+
+      <h2 class="text-3xl md:text-5xl font-black text-primary dark:text-white mb-6 uppercase tracking-tighter">
+        Blueprint <span class="text-accent italic font-serif">Not Found</span>
+      </h2>
+      
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-lg mx-auto mb-12 leading-relaxed">
+        It seems the page you are looking for has been moved or demolished. Let's get you back to the main site to continue your renovation journey.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="index.html" class="w-full sm:w-auto bg-primary text-white px-10 py-4 rounded-xl font-bold hover:scale-105 transition-transform shadow-xl shadow-primary/20 flex items-center justify-center gap-3">
+            <i class="fas fa-house"></i> Back to Home
+        </a>
+        <a href="service.html" class="w-full sm:w-auto border-2 border-primary text-primary dark:border-accent dark:text-accent px-10 py-4 rounded-xl font-bold hover:bg-primary hover:text-white dark:hover:bg-accent dark:hover:text-secondary transition-all flex items-center justify-center gap-3">
+            <i class="fas fa-tools"></i> View Services
+        </a>
+      </div>
+
+      <!-- Quick Search Utility -->
+      <div class="mt-16 max-w-md mx-auto">
+        <p class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] mb-4">Or search the site hub</p>
+        <div class="relative">
+            <input type="text" placeholder="Search for blueprints, blogs, services..." class="w-full bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:border-accent focus:outline-none dark:text-white transition-colors pr-14 shadow-sm">
+            <button class="absolute right-4 top-1/2 -translate-y-1/2 text-accent text-xl">
+                <i class="fas fa-magnifying-glass"></i>
+            </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative Structural Elements -->
+    <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
+    <div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+  </main>
+
+  <!-- START OF FOOTER (EXACTLY AS PROVIDED) -->
+  <footer class="bg-secondary pt-20 pb-10 text-white">
+    <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-white/10 pb-16">
+        <div>
+          <a href="#" class="flex items-center gap-3 mb-6">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg">
+              <i class="fas fa-hammer text-lg"></i>
+            </span>
+            <div class="leading-tight">
+              <span class="block text-xl font-bold tracking-tight text-accent">Groww</span>
+              <span class="block text-xs font-semibold text-accent uppercase tracking-widest">
+                <span class="block text-xs font-semibold text-accent uppercase tracking-widest">BuildNest</span>
+              </span>
+            </div>
+          </a>
+          <p class="text-gray-400 mb-6">Transforming spaces with quality craftsmanship and trusted expertise.</p>
+          <div class="flex gap-3">
+            <a href="#" class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-secondary transition-all"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-secondary transition-all"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-secondary transition-all"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm">Quick Links</h4>
+          <ul class="space-y-3 text-sm text-left rtl:text-right">
+            <li><a href="index.html" class="block hover:text-accent transition-colors">Home</a></li>
+            <li><a href="service.html" class="block hover:text-accent transition-colors">Services</a></li>
+            <li><a href="blog.html" class="block hover:text-accent transition-colors">Blog</a></li>
+            <li><a href="aboutus.html" class="block hover:text-accent transition-colors">About Us</a></li>
+            <li><a href="contact.html" class="block hover:text-accent transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold mb-6">Contact Us</h4>
+          <div class="space-y-4 text-left rtl:text-right">
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-map-marker-alt text-accent"></i></div>
+              <div class="text-gray-400 text-xs">No. 24, Bangalore Main Road<br>Hosur, Tamil Nadu 635109</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-phone text-accent"></i></div>
+              <div class="text-gray-400 text-xs">+91 98765 43210</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center"><i class="fas fa-envelope text-accent"></i></div>
+              <div class="text-gray-400 text-xs">info@growwrenovations.in</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold mb-6">Stay Inspired</h4>
+          <p class="text-gray-400 mb-4 text-xs">Smart renovation ideas and premium construction insights.</p>
+          <form class="space-y-4" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Your email address" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-accent focus:outline-none text-white text-xs">
+            <button type="submit" class="w-full bg-accent text-white font-bold py-3 rounded-lg hover:opacity-90 transition-colors uppercase text-[10px] tracking-widest">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm">
+        <div>© 2026 Groww Builders Group. All rights reserved.</div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-accent transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-accent transition-colors">Terms</a>
+          <a href="#" class="hover:text-accent transition-colors">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const l1 = document.getElementById('line1');
+    const l2 = document.getElementById('line2');
+    const l3 = document.getElementById('line3');
+
+    // Menu Toggle Logic
+    hamburger.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      if (!isHidden) {
+        l1.style.transform = 'translateY(8px) rotate(45deg)';
+        l2.style.opacity = '0';
+        l3.style.transform = 'translateY(-8px) rotate(-45deg)';
+      } else {
+        l1.style.transform = 'none';
+        l2.style.opacity = '1';
+        l3.style.transform = 'none';
+      }
+    });
+
+    // Theme Logic
+    const themeBtns = [document.getElementById('themeToggleDesktop'), document.getElementById('themeToggleMobile')];
+    function setTheme(isDark) {
+      if (isDark) {
+        htmlEl.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeBtns.forEach(btn => { if(btn) btn.innerHTML = '<i class="fas fa-sun"></i>' });
+      } else {
+        htmlEl.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        themeBtns.forEach(btn => { if(btn) btn.innerHTML = '<i class="fas fa-moon"></i>' });
+      }
+    }
+    themeBtns.forEach(btn => btn?.addEventListener('click', () => setTheme(!htmlEl.classList.contains('dark'))));
+    setTheme(localStorage.getItem('theme') === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    // RTL Logic
+    const rtlBtns = [document.getElementById('rtlToggleDesktop'), document.getElementById('rtlToggleMobile')];
+    rtlBtns.forEach(btn => btn?.addEventListener('click', () => {
+      const currentDir = bodyEl.getAttribute('dir') || 'ltr';
+      const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+      bodyEl.setAttribute('dir', newDir);
+    }));
+  </script>
+</body>
+</html>

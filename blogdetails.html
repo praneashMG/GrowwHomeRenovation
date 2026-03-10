@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Article Detail | Growwpark | Home Renovation & Contracting</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1B4332',    // Deep Forest Green
+            accent: '#D4A373',     // Warm Sand
+            secondary: '#111111',  // Deep Black
+            offWhite: '#F8F9FA'
+          },
+          fontFamily: {
+            'display': ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    [dir="rtl"] .rtl-flip { transform: scaleX(-1); }
+    #mobileMenu { transition: all 0.3s ease-in-out; }
+    .glass-effect { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.85); }
+    .dark .glass-effect { background: rgba(17, 17, 17, 0.85); }
+    .architectural-grid { background-image: radial-gradient(rgba(212, 163, 115, 0.1) 1px, transparent 1px); background-size: 40px 40px; }
+    
+    /* Elegant Article Styling */
+    article h2 { font-size: 2.5rem; font-weight: 800; margin-top: 4.5rem; margin-bottom: 1.5rem; color: #1B4332; letter-spacing: -0.025em; }
+    .dark article h2 { color: #D4A373; }
+    article p { margin-bottom: 2rem; line-height: 2; color: #4B5563; font-size: 1.125rem; font-weight: 400; }
+    .dark article p { color: #9CA3AF; }
+    article ul { margin-bottom: 2.5rem; padding-left: 1.5rem; }
+    article ul li { margin-bottom: 1rem; color: #1B4332; font-weight: 500; list-style: square; }
+    .dark article ul li { color: #D1D5DB; }
+    article ul li::marker { color: #D4A373; }
+
+    #articleBody { opacity: 0; transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1); }
+  </style>
+</head>
+
+<body class="bg-white text-secondary dark:bg-secondary dark:text-gray-100 transition-colors duration-300" data-dir="ltr">
+
+  <!-- START OF HEADER (EXACTLY AS REQUESTED) -->
+  <nav id="navbar" class="sticky top-0 z-50 transition-colors duration-300 bg-white text-secondary border-b border-gray-100 dark:bg-secondary dark:text-white dark:border-white/10 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
+      <a href="index.html" class="flex items-center gap-2 shrink-0 group">
+        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fas fa-hammer text-lg"></i>
+        </span>
+        <div class="leading-tight text-left rtl:text-right">
+          <span class="block text-xl font-bold tracking-tight text-accent">Groww</span>
+          <span class="block text-xs font-semibold text-primary dark:text-accent uppercase tracking-widest">
+            <span class="block text-xs font-semibold text-accent uppercase tracking-widest">BuildNest</span>
+          </span>
+        </div>
+      </a>
+      
+      <div class="hidden lg:flex items-center gap-2">
+        <ul class="flex items-center gap-0.5 text-xs font-semibold">
+          <!-- Home Dropdown -->
+      <li class="relative group">
+            <button class="home-trigger flex items-center gap-1 rounded-md px-2.5 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">
+              <span>Home</span>
+              <i class="fas fa-chevron-down text-[9px]"></i>
+            </button>
+            <ul class="invisible absolute left-0 mt-1.5 w-44 rounded-md bg-white border border-gray-100 dark:bg-secondary dark:border-white/10 p-1.5 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100 z-50">
+              <li><a href="index.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">Home 1</a></li>
+              <li><a href="homepage2.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">Home 2</a></li>
+            </ul>
+          </li>
+          <!-- Services -->
+          <li><a href="service.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Services</a></li>
+
+          <!-- Blog -->
+          <li><a href="blog.html" class="block rounded-md px-3 py-1.5 bg-accent text-white font-bold shadow-sm transition-colors">Blog</a></li>
+          <li><a href="blog.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Gallery</a></li>
+
+          <!-- About -->
+          <li><a href="aboutus.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">About</a></li>
+
+          <!-- Contact -->
+          <li><a href="contact.html" class="block rounded-md px-3 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">Contact</a></li>
+
+          <!-- Dashboard Dropdown -->
+          <li class="relative group">
+            <button class="flex items-center gap-1 rounded-md px-2.5 py-1.5 hover:text-primary dark:hover:text-accent transition-colors">
+              <span>Dashboard</span>
+              <i class="fas fa-chevron-down text-[9px] group-hover:rotate-180 transition-transform"></i>
+            </button>
+            <ul class="invisible absolute left-0 mt-1.5 w-48 rounded-md bg-white border border-gray-100 dark:bg-secondary dark:border-white/10 p-1.5 opacity-0 shadow-xl transition-all group-hover:visible group-hover:opacity-100 z-50">
+              <li><a href="admin.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">Admin Panel</a></li>
+              <li><a href="user.html" class="block rounded-md px-3 py-1.5 hover:bg-primary hover:text-white transition-colors">User Dashboard</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="ml-4 flex items-center gap-3 border-l border-gray-200 dark:border-white/10 pl-4">
+          <button id="themeToggleDesktop" class="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 dark:border-white/10 hover:bg-primary hover:text-white transition-all">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button id="rtlToggleDesktop" class="flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 dark:border-white/10 hover:bg-primary hover:text-white transition-all">
+            <i class="fas fa-exchange-alt"></i>
+          </button>
+          <a href="login.html" class="ml-2 inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2 text-sm font-bold text-white hover:opacity-90 active:scale-95 shadow-lg shadow-accent/20 transition-all uppercase tracking-widest">Register</a>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 lg:hidden">
+        <button id="themeToggleMobile" class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 dark:border-white/10">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button id="hamburger" class="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-md bg-gray-100 dark:bg-white/5" aria-label="Toggle Menu">
+          <span id="line1" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+          <span id="line2" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+          <span id="line3" class="h-0.5 w-6 bg-current transition-all duration-300"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden border-t border-gray-100 bg-white dark:bg-secondary dark:border-white/5 lg:hidden overflow-hidden transition-all duration-300">
+      <div class="flex flex-col gap-1 p-4">
+        <details class="group">
+          <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-lg font-medium list-none hover:bg-gray-50 dark:hover:bg-white/5">
+  <div class="flex items-center gap-4">
+  <i class="fas fa-home text-accent w-6"></i>
+  <span>Home</span>
+</div>
+  <i class="fas fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+</summary>
+
+<div class="mt-1 flex flex-col gap-1 pl-14 text-gray-500 dark:text-gray-400">
+  <a href="index.html" class="py-2 hover:text-accent">Home 1</a>
+  <a href="homepage2.html" class="py-2 hover:text-accent">Home 2</a>
+</div>
+</details>
+        
+        <a href="service.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+          <i class="fas fa-concierge-bell text-accent w-6"></i> Services
+        </a>
+ <a href="blog.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-bold bg-accent text-white shadow-md">
+  <i class="fas fa-blog w-6"></i> Blog
+</a>
+        <a href="gallery.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5">
+  <i class="fas fa-image text-accent w-6"></i> Gallery
+</a>
+        <a href="aboutus.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+          <i class="fas fa-info-circle text-accent w-6"></i> About Us
+        </a>
+        <a href="contact.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+          <i class="fas fa-envelope text-accent w-6"></i> Contact
+        </a>
+
+        <details class="group">
+          <summary class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-3 text-lg font-medium list-none hover:bg-gray-50 dark:hover:bg-white/5 transition">
+            <div class="flex items-center gap-4">
+              <i class="fas fa-tachometer-alt text-accent w-6"></i> <span>Dashboard</span>
+            </div>
+            <i class="fas fa-chevron-down text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="mt-1 flex flex-col gap-1 pl-14 text-gray-500 dark:text-gray-400">
+            <a href="admin.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition">
+              <i class="fas fa-user-shield text-accent w-6"></i> Admin Panel
+            </a>
+            <a href="user.html" class="flex items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition">
+              <i class="fas fa-user text-accent w-6"></i> User Dashboard
+            </a>
+          </div>
+        </details>
+
+        <div class="mt-4 pt-4 border-t border-gray-100 dark:border-white/10">
+          <button id="rtlToggleMobile" class="flex w-full items-center gap-4 rounded-lg px-4 py-3 text-lg font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+            <i class="fas fa-exchange-alt text-accent w-6"></i> Switch Direction (RTL)
+          </button>
+          <a href="login.html" class="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-accent py-4 text-center text-lg font-bold text-white active:scale-95 transition-transform">
+            <i class="fas fa-user-plus"></i> Register
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- END OF HEADER -->
+
+  <main id="articleBody">
+    <!-- (1) Premium Editorial Hero -->
+    <section class="relative h-[60vh] lg:h-[80vh] overflow-hidden bg-primary">
+       <img id="heroImg" src="" class="w-full h-full object-cover transition-transform duration-[3s] scale-105 hover:scale-100" alt="Featured Image">
+       <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent"></div>
+       
+       <!-- Floating Meta Card -->
+       <div class="absolute bottom-0 left-0 w-full p-4 lg:p-12">
+          <div class="mx-auto max-w-7xl">
+            <div class="glass-effect p-8 lg:p-16 rounded-[2.5rem] shadow-2xl border border-white/20 inline-block max-w-4xl transform translate-y-12 lg:translate-y-24">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="px-4 py-1.5 bg-accent text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-full" id="postCategory"></span>
+                    <span class="text-gray-400 text-xs font-bold" id="postDate"></span>
+                </div>
+                <h1 class="text-4xl lg:text-7xl font-black text-primary dark:text-white leading-tight tracking-tighter mb-8" id="postTitle"></h1>
+                <div class="flex items-center gap-4 border-t border-gray-100 dark:border-white/5 pt-8">
+                    <div class="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white font-black text-lg shadow-lg" id="authorInitial">G</div>
+                    <div class="text-left rtl:text-right">
+                        <p class="text-[10px] font-black uppercase text-accent tracking-widest">Article Prepared By</p>
+                        <p class="font-bold text-primary dark:text-white" id="postAuthor"></p>
+                    </div>
+                </div>
+            </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- (2) Article Narrative Section -->
+    <section class="pt-32 lg:pt-56 pb-24 bg-white dark:bg-secondary relative transition-colors duration-300">
+      <div class="absolute inset-0 architectural-grid opacity-30 pointer-events-none"></div>
+      <div class="mx-auto max-w-7xl px-4 lg:px-8 relative z-10 text-left rtl:text-right">
+        <div class="flex flex-col lg:flex-row gap-20">
+          
+          <!-- Column 1: Main Text -->
+          <div class="lg:w-2/3">
+            <article class="prose lg:prose-xl max-w-none" id="postContent">
+                <!-- Content Injected Dynamically -->
+            </article>
+            
+            <!-- (4) Visual Gallery: Neat Staggered Grid -->
+            <div class="mt-24">
+                <div class="flex items-center gap-6 mb-12">
+                   <h3 class="text-3xl font-black text-primary dark:text-white uppercase tracking-tighter shrink-0">Structural Visuals</h3>
+                   <div class="flex-1 h-0.5 bg-accent/20"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
+                    <!-- Images Injected -->
+                </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Refined Professional Sidebar -->
+          <div class="lg:w-1/3 space-y-16">
+             <div class="p-10 rounded-[3rem] bg-offWhite dark:bg-white/5 border border-gray-100 dark:border-white/10 relative shadow-sm">
+                <div class="w-12 h-12 rounded-2xl bg-accent flex items-center justify-center text-white text-xl mb-8 shadow-lg shadow-accent/20"><i class="fas fa-list-check"></i></div>
+                <h4 class="text-xl font-bold text-primary dark:text-accent mb-8 uppercase tracking-widest">Master Insights</h4>
+                <div class="space-y-10" id="takeawaysGrid">
+                    <!-- Dynamic Checklist -->
+                </div>
+             </div>
+
+             <!-- Mini Consultation Box -->
+             <div class="p-10 rounded-[3rem] bg-primary text-white relative shadow-2xl overflow-hidden group">
+                <div class="absolute inset-0 architectural-grid opacity-10 pointer-events-none group-hover:opacity-20 transition-opacity"></div>
+                <div class="relative z-10">
+                   <span class="text-accent font-black text-[10px] uppercase tracking-[0.4em] mb-4 block">Action Item</span>
+                   <h5 class="text-2xl font-bold mb-6 leading-tight">Ready to verify these steps on your site?</h5>
+                   <p class="text-gray-400 text-sm mb-10 leading-relaxed">Book our senior contracting lead for a technical feasibility study based on these principles.</p>
+                   <a href="contact.html" class="block w-full py-5 bg-accent text-white text-center rounded-2xl font-black text-xs tracking-widest uppercase hover:bg-white hover:text-primary transition-all shadow-xl shadow-accent/20">RESERVE AUDIT</a>
+                </div>
+             </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- (5) Related Articles Section -->
+    <section class="py-24 bg-offWhite dark:bg-secondary transition-colors border-t border-gray-100 dark:border-white/5">
+       <div class="mx-auto max-w-7xl px-4 lg:px-8">
+          <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-6 text-center md:text-left rtl:md:text-right">
+             <div>
+                <h3 class="text-4xl font-black text-primary dark:text-white uppercase tracking-tighter">Expand Your Knowledge</h3>
+                <p class="text-gray-500 mt-2">More professional logs from our contracting team.</p>
+             </div>
+             <a href="blog.html" class="inline-flex items-center gap-4 px-8 py-4 rounded-full border-2 border-accent text-accent font-black text-xs uppercase tracking-widest hover:bg-accent hover:text-white transition-all">VIEW ALL LOGS</a>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="relatedGrid">
+             <!-- Related articles -->
+          </div>
+       </div>
+    </section>
+
+    <!-- (6) Redesigned Response Form -->
+    <section class="py-24 bg-white dark:bg-secondary">
+       <div class="mx-auto max-w-4xl px-4 lg:px-8">
+           <div class="p-10 lg:p-20 rounded-[4rem] bg-offWhite dark:bg-white/5 border border-gray-100 dark:border-white/5 relative shadow-inner overflow-hidden">
+                <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-accent opacity-[0.05] rounded-full blur-3xl"></div>
+                <h3 class="text-4xl font-black text-primary dark:text-white mb-4 tracking-tighter uppercase text-left rtl:text-right">Professional Response</h3>
+                <p class="text-gray-500 mb-12 text-lg text-left rtl:text-right">Have a technical question about this article? Share your thoughts.</p>
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left rtl:text-right" onsubmit="event.preventDefault(); alert('Message logged for technical review.');">
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-black uppercase text-accent tracking-widest px-2">Your Name</label>
+                        <input type="text" placeholder="Ex: Arjun Malhotra" class="w-full bg-white dark:bg-secondary border border-gray-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:border-accent transition-all outline-none text-sm font-medium">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-black uppercase text-accent tracking-widest px-2">Professional Email</label>
+                        <input type="email" placeholder="name@domain.com" class="w-full bg-white dark:bg-secondary border border-gray-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:border-accent transition-all outline-none text-sm font-medium">
+                    </div>
+                    <div class="col-span-2 space-y-1">
+                        <label class="text-[10px] font-black uppercase text-accent tracking-widest px-2">Observation / Inquiry</label>
+                        <textarea rows="4" placeholder="Write your perspective here..." class="w-full bg-white dark:bg-secondary border border-gray-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:border-accent transition-all outline-none text-sm font-medium"></textarea>
+                    </div>
+                    <div class="col-span-2">
+                        <button type="submit" class="bg-primary text-white px-14 py-6 rounded-2xl font-black text-xs tracking-[0.2em] shadow-2xl hover:bg-accent transition-all uppercase">POST TO THREAD</button>
+                    </div>
+                </form>
+           </div>
+       </div>
+    </section>
+  </main>
+
+  <!-- START OF FOOTER (UNMODIFIED) -->
+  <footer class="bg-secondary pt-20 pb-10 text-white">
+    <div class="mx-auto max-w-7xl px-4 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-white/10 pb-16">
+        <div>
+     <a href="#" class="flex items-center gap-3 mb-6">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg">
+<i class="fas fa-hammer text-lg"></i>            </span>
+            <div class="leading-tight">
+              <span class="block text-xl font-bold tracking-tight text-accent">Groww</span>
+              <span class="block text-xs font-semibold text-accent uppercase tracking-widest">           
+                   <span class="block text-xs font-semibold text-accent uppercase tracking-widest">BuildNest</span></span>
+            </div>
+          </a>
+          <p class="text-gray-400 mb-6 text-sm leading-relaxed text-left rtl:text-right">Transforming spaces with quality craftsmanship and trusted expertise.</p>
+          <div class="flex gap-3 justify-start rtl:justify-end">
+            <a href="#" class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent transition-all"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent transition-all"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent transition-all"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm text-left rtl:text-right">Quick Links</h4>
+          <ul class="space-y-3 text-sm text-left rtl:text-right">
+            <li><a href="index.html" class="block hover:text-accent transition-colors">Home</a></li>
+            <li><a href="service.html" class="block hover:text-accent transition-colors">Services</a></li>
+            <li><a href="blog.html" class="block hover:text-accent transition-colors text-accent">Blog</a></li>
+            <li><a href="aboutus.html" class="block hover:text-accent transition-colors">About Us</a></li>
+            <li><a href="contact.html" class="block hover:text-accent transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold mb-6 text-left rtl:text-right">Contact Us</h4>
+          <div class="space-y-4 text-xs text-left rtl:text-right">
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="text-gray-400">No. 24, Bangalore Main Road, Hosur, Tamil Nadu 635109</div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0"><i class="fas fa-phone"></i></div>
+              <div class="text-gray-400">+91 98765 43210</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-lg font-bold mb-6 text-left rtl:text-right uppercase tracking-widest">Subscribe</h4>
+          <form class="space-y-4" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Your email address" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 focus:border-accent text-white text-sm outline-none">
+            <button type="submit" class="w-full bg-accent text-white font-bold py-3 rounded-lg hover:opacity-90 uppercase text-xs tracking-widest transition-all">Submit</button>
+          </form>
+        </div>
+      </div>
+      <div class="pt-8 text-center text-gray-500 text-sm">© 2026 Groww Builders Group. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Unified Theme & RTL Controller
+    const htmlEl = document.documentElement;
+    const bodyEl = document.body;
+    const themeBtnDesktop = document.getElementById('themeToggleDesktop');
+    const themeBtnMobile = document.getElementById('themeToggleMobile');
+    const rtlBtnDesktop = document.getElementById('rtlToggleDesktop');
+    const rtlBtnMobile = document.getElementById('rtlToggleMobile');
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const l1 = document.getElementById('line1');
+    const l2 = document.getElementById('line2');
+    const l3 = document.getElementById('line3');
+
+    hamburger.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      if (!isHidden) {
+        l1.style.transform = 'translateY(8px) rotate(45deg)';
+        l2.style.opacity = '0';
+        l3.style.transform = 'translateY(-8px) rotate(-45deg)';
+      } else {
+        l1.style.transform = 'none';
+        l2.style.opacity = '1';
+        l3.style.transform = 'none';
+      }
+    });
+
+    function setTheme(isDark) {
+      if (isDark) { htmlEl.classList.add('dark'); localStorage.setItem('theme', 'dark'); } 
+      else { htmlEl.classList.remove('dark'); localStorage.setItem('theme', 'light'); }
+    }
+    [themeBtnDesktop, themeBtnMobile].forEach(btn => btn?.addEventListener('click', () => setTheme(!htmlEl.classList.contains('dark'))));
+    [rtlBtnDesktop, rtlBtnMobile].forEach(btn => btn?.addEventListener('click', () => {
+      const currentDir = bodyEl.getAttribute('dir') || 'ltr';
+      bodyEl.setAttribute('dir', currentDir === 'ltr' ? 'rtl' : 'ltr');
+    }));
+
+    // ARTICLE DATA HUB
+    const blogData = {
+      'kitchen-overhaul': {
+        title: "The Work Triangle: Precision Kitchen Remodeling",
+        category: "Structural Remodeling",
+        author: "Arjun Malhotra",
+        date: "March 15, 2026",
+        img: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=1000",
+        content: `
+            <h2>1. The Foundation of Flow</h2>
+            <p>A gourmet kitchen isn't just about marble countertops; it's about the efficiency of movement. We call this the "Structural Work Triangle". Our contractors ensure the distance between sink, stove, and fridge is mathematically optimized.</p>
+            <h2>2. Utility Rerouting</h2>
+            <p>Unlike standard painters, our contracting team starts with the guts: gas lines, drainage hubs, and heavy-load electrical points. We pressure-test every joint for 48 hours before cabinetry installation.</p>
+            <ul>
+                <li>Industrial-grade ventilation planning for open-plan layouts.</li>
+                <li>Concealed electrical hubs for smart appliances.</li>
+                <li>Moisture-resistant HDHMR woodwork carcasses for longevity.</li>
+            </ul>
+        `,
+        takeaways: [
+          "Plumbing health is more important than tile aesthetics.", 
+          "Custom cabinetry adds 15% more resale value.", 
+          "Always use heat-resistant sealants for backsplash joints."
+        ],
+        gallery: ["/assets/rg2.webp", "/assets/bge.jpg", "/assets/sh1.jpg"]
+      },
+      'bathroom-waterproofing': {
+        title: "Sanitary Integrity: Advanced Bathroom Engineering",
+        category: "Engineering",
+        author: "Vikram Rao",
+        date: "March 12, 2026",
+        img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000",
+        content: `
+            <h2>The 3-Layer Membrane Rule</h2>
+            <p>Standard tiling is not waterproofing. At BuildNest, we apply a bitumen-based membrane, followed by a cementitious coat and industrial epoxy sealants.</p>
+            <h2>Sanitary Integration</h2>
+            <p>Wall-mounted faucets and concealed cisterns require heavy structural wall reinforcement. We audit your wall strength before proposing luxury German fixtures.</p>
+        `,
+        takeaways: [
+          "Waterproof up to 6 feet in shower zones.", 
+          "Pressure test plumbing lines at 10 bar.", 
+          "Use non-slip P4 grade tiles for safety."
+        ],
+        gallery: ["https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=600", "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?q=80&w=600", "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600"]
+      },
+      'material-trends': {
+         title: "Material Science: The 2026 Shift in Luxury Design",
+         category: "Interior Design",
+         author: "Priya Sharma",
+         date: "Feb 28, 2026",
+         img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000",
+         content: `
+             <h2>Sustainable Engineering</h2>
+             <p>The trend is shifting from mere "look" to "longevity". We are seeing a surge in bio-resins and stone-composite veneers that offer wood's warmth with granite's durability.</p>
+             <h2>Matte vs. Gloss</h2>
+             <p>Matte finishes with fingerprint-resistant technology are the new standard for luxury contracting. They hide surface defects and reflect soft light better.</p>
+         `,
+         takeaways: [
+           "Bio-composites are more durable than pure wood.", 
+           "Textured stones add depth to minimalist renovations.", 
+           "Energy-efficient glass is now a standard requirement."
+         ],
+         gallery: ["https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=600", "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=600", "/assets/hhero.jpg"]
+      }
+    };
+
+    window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const postKey = urlParams.get('post') || 'kitchen-overhaul';
+      const data = blogData[postKey] || blogData['kitchen-overhaul'];
+
+      document.getElementById('postTitle').innerText = data.title;
+      document.getElementById('postCategory').innerText = data.category;
+      document.getElementById('postAuthor').innerText = data.author;
+      document.getElementById('authorInitial').innerText = data.author.charAt(0);
+      document.getElementById('postDate').innerText = data.date;
+      document.getElementById('heroImg').src = data.img;
+      document.getElementById('postContent').innerHTML = data.content;
+
+      // Takeaways (Numbered labels)
+      const takes = document.getElementById('takeawaysGrid');
+      takes.innerHTML = '';
+      data.takeaways.forEach((take, index) => {
+          takes.innerHTML += `
+            <div class="flex gap-6 items-start group">
+                <span class="text-5xl font-black text-accent/20 group-hover:text-accent transition-colors duration-500">0${index + 1}</span>
+                <p class="text-sm font-bold text-gray-600 dark:text-gray-300 leading-relaxed pt-2">${take}</p>
+            </div>
+          `;
+      });
+
+      // Gallery (Clean staggered)
+      const gal = document.getElementById('galleryGrid');
+      gal.innerHTML = '';
+      data.gallery.forEach((img, i) => {
+          const rotation = i % 2 === 0 ? 'rotate-1' : '-rotate-1';
+          gal.innerHTML += `<div class="rounded-[2rem] overflow-hidden shadow-xl h-64 transform ${rotation} hover:rotate-0 transition-transform duration-500"><img src="${img}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"></div>`;
+      });
+
+      // Related Posts
+      const rel = document.getElementById('relatedGrid');
+      rel.innerHTML = '';
+      Object.keys(blogData).filter(k => k !== postKey).forEach(key => {
+          const item = blogData[key];
+          rel.innerHTML += `
+             <a href="blogdetails.html?post=${key}" class="group bg-white dark:bg-white/5 p-4 rounded-[2.5rem] shadow-sm flex flex-col hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-white/5">
+                <div class="rounded-[2rem] overflow-hidden h-48 mb-6"><img src="${item.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"></div>
+                <div class="px-4 pb-4 text-left rtl:text-right">
+                   <span class="text-[9px] font-black uppercase text-accent tracking-[0.2em] mb-2 block">${item.category}</span>
+                   <h6 class="font-bold text-lg dark:text-white group-hover:text-accent transition-colors leading-tight mb-4 text-sm">${item.title}</h6>
+                   <span class="text-[10px] font-bold text-gray-400">Read Article →</span>
+                </div>
+             </a>
+          `;
+      });
+
+      document.getElementById('articleBody').style.opacity = "1";
+    };
+  </script>
+</body>
+</html> 

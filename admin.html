@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuildNest · Admin Atelier</title>
+    <!-- Tailwind + Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        /* --- Root Color Engine (Customized for BuildNest) --- */
+        :root, html[data-theme='light'] {
+            --color-background: #F8F9FA;
+            --color-primary-text: #111111;
+            --color-secondary-text: #4B5563;
+            --color-accent: #D4A373; /* Warm Sand / Gold */
+            --color-accent-light: #1B4332; /* Deep Forest Green */
+            --color-border: #E5E7EB;
+            --color-hover: #F1F3F5;
+            --color-card-bg: #FFFFFF;
+            --color-sidebar-bg: #FFFFFF;
+            --color-success: #1B4332;
+            --color-warning: #F59E0B;
+            --color-danger: #EF4444;
+            --color-info: #3B82F6;
+        }
+        html[data-theme='dark'] {
+            --color-background: #0A0A0A;
+            --color-primary-text: #F8F9FA;
+            --color-secondary-text: #9CA3AF;
+            --color-accent: #D4A373;
+            --color-accent-light: #1B4332;
+            --color-border: #1F2937;
+            --color-hover: #171717;
+            --color-card-bg: #111111;
+            --color-sidebar-bg: #0D0D0D;
+            --color-success: #2D6A4F;
+            --color-warning: #D97706;
+            --color-danger: #DC2626;
+            --color-info: #2563EB;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.2s, color 0.2s;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .text-accent { color: var(--color-accent); }
+        .text-primary-green { color: var(--color-accent-light); }
+        .bg-card-bg { background-color: var(--color-card-bg); }
+        .bg-accent { background-color: var(--color-accent); }
+        .bg-hover { background-color: var(--color-hover); }
+        .bg-primary-green { background-color: var(--color-accent-light); }
+        .border-border { border-color: var(--color-border); }
+        
+        
+        .dashboard-card {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 1.5rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 18px -8px rgba(0,0,0,0.04);
+        }
+        .dashboard-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 16px 24px -12px rgba(212, 163, 115, 0.15);
+        }
+        .bg-accent-gradient {
+  background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent));
+}
+
+        .sidebar-link {
+            display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1.25rem;
+            border-radius: 1rem; color: var(--color-secondary-text); transition: all 0.18s ease;
+            font-weight: 600; margin-bottom: 0.35rem; white-space: nowrap; cursor: pointer;
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            background-color: var(--color-accent); color: #FFFFFF;
+            background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent));
+        }
+        .sidebar-link:hover svg, .sidebar-link.active svg { stroke: white; }
+        .sidebar-link.logout:hover { background: #d13b3b; color: white; }
+
+        html[dir="rtl"] .sidebar-link { flex-direction: row-reverse; }
+        .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s cubic-bezier(0.2,0.9,0.3,1), transform 0.6s cubic-bezier(0.2,0.9,0.3,1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .architectural-grid { 
+            background-image: radial-gradient(var(--color-accent) 1px, transparent 1px); 
+            background-size: 30px 30px; 
+        }
+
+        .status-badge { padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+        .status-badge.active { background-color: var(--color-accent); color: white; }
+        .status-badge.completed { background-color: var(--color-success); color: white; }
+        .status-badge.pending { background-color: var(--color-warning); color: white; }
+
+        #mobile-overlay { background-color: rgba(0,0,0,0.5); backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; position: fixed; inset: 0; z-index: 55; }
+        #mobile-overlay.active { opacity: 1; pointer-events: auto; }
+        
+        .custom-scrollbar::-webkit-scrollbar { height: 4px; width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 10px; }
+    </style>
+</head>
+<body class="antialiased bg-background h-screen overflow-hidden w-full">
+
+    <!-- TOP BAR -->
+    <header class="border-b border-border bg-card-bg sticky top-0 z-50 w-full">
+        <div class="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-10 py-3 flex items-center justify-between gap-3">
+           <div class="flex items-center gap-3">
+  
+  <!-- Mobile Menu Button -->
+  <button id="mobile-menu-toggle"
+    class="lg:hidden flex h-10 w-10 items-center justify-center rounded-md bg-gray-100 dark:bg-white/5 transition">
+    <i class="fas fa-bars text-sm"></i>
+  </button>
+
+  <!-- Logo -->
+  <a href="index.html" class="flex items-center gap-2 shrink-0 group">
+  <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg group-hover:scale-110 transition-transform">
+<i class="fas fa-hammer text-lg"></i>        </span>
+
+    <div class="leading-tight">
+      <span class="block text-xl font-bold tracking-tight text-accent">
+        Groww
+      </span>
+
+      <span class="block text-xs font-semibold text-accent uppercase tracking-widest">
+        BuildNest
+      </span>
+    </div>
+
+  </a>
+
+</div>
+
+            <div class="flex items-center gap-2 sm:gap-4 shrink-0 rtl:flex-row-reverse">
+                <div class="hidden lg:flex items-center bg-hover rounded-full px-4 py-2 border border-border">
+                    <i class="fas fa-search text-secondary-text text-sm mr-2"></i>
+                    <input type="text" placeholder="Search site records..." class="bg-transparent border-none outline-none text-sm w-48 text-primary-text">
+                </div>
+
+                <button id="lang-toggle" class="p-2 rounded-full hover:bg-hover transition text-primary-text"><i class="fas fa-globe"></i></button>
+
+                <button id="theme-toggle-user" class="p-2 rounded-full hover:bg-hover transition text-primary-text">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block text-accent"></i>
+                </button>
+
+                <div class="relative flex items-center gap-2 pl-2 sm:pl-3 border-l border-border rtl:border-l-0 rtl:border-r min-w-0">
+                    <div class="relative flex-shrink-0">
+                        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-accent/10 border border-accent flex items-center justify-center text-accent font-bold">AR</div>
+                    </div>
+                    <div class="hidden sm:block text-sm">
+                        <p class="font-bold leading-none text-primary-text">Alex Rivera</p>
+                        <p class="text-[10px] text-secondary-text mt-1 uppercase tracking-widest font-black">Chief Admin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobile-overlay" class="lg:hidden"></div>
+
+    <!-- MAIN LAYOUT -->
+    <main class="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-10 py-6 h-[calc(100vh-64px)] w-full relative">
+        <div class="flex flex-col lg:flex-row gap-6 xl:gap-10 h-full">
+            
+            <!-- SIDEBAR -->
+            <aside id="sidebar-container" class="fixed lg:static top-0 left-0 h-full lg:h-auto w-72 lg:w-72 xl:w-80 z-[60] lg:z-10 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out bg-sidebar lg:bg-transparent lg:flex-shrink-0">
+                <div class="dashboard-card p-5 bg-sidebar h-full overflow-y-auto custom-scrollbar border-r lg:border border-border lg:rounded-[1.25rem] rounded-none shadow-none lg:shadow-md">
+                    
+                    <div class="flex lg:hidden justify-between items-center mb-8 px-2">
+                        <span class="text-xs font-black uppercase tracking-widest text-accent">Navigation</span>
+                        <button id="close-sidebar" class="p-2 hover:bg-hover rounded-lg text-primary-text"><i class="fas fa-times"></i></button>
+                    </div>
+
+                    <nav class="flex flex-col gap-1">
+                        <p class="text-[10px] uppercase tracking-widest text-secondary-text font-black mb-4 px-3 opacity-50">Central Control</p>
+                        <a href="#" onclick="activateSection('overview')" data-section="overview" class="sidebar-link active">
+                            <i class="fas fa-chart-pie w-5"></i>
+                            <span>Business Intelligence</span>
+                        </a>
+                        <a href="#" onclick="activateSection('users')" data-section="users" class="sidebar-link">
+                            <i class="fas fa-user-group w-5"></i>
+                            <span>Client & Team Hub</span>
+                        </a>
+                        <a href="#" onclick="activateSection('content')" data-section="content" class="sidebar-link">
+                            <i class="fas fa-file-contract w-5"></i>
+                            <span>Construction Logs</span>
+                        </a>
+                        
+                        <p class="text-[10px] uppercase tracking-widest text-secondary-text font-black mt-6 mb-4 px-3 opacity-50">Operations</p>
+                        <a href="#" onclick="activateSection('orders')" data-section="orders" class="sidebar-link">
+                            <i class="fas fa-envelope-open-text w-5"></i>
+                            <span>Quote Requests</span>
+                            <span class="ml-auto bg-primary-green text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">5</span>
+                        </a>
+                        <a href="#" onclick="activateSection('messages')" data-section="messages" class="sidebar-link">
+                            <i class="fas fa-comment-dots w-5"></i>
+                            <span>Internal Comms</span>
+                        </a>
+
+                        <p class="text-[10px] uppercase tracking-widest text-secondary-text font-black mt-6 mb-4 px-3 opacity-50">System</p>
+                        <a href="#" onclick="activateSection('reports')" data-section="reports" class="sidebar-link">
+                            <i class="fas fa-file-invoice-dollar w-5"></i>
+                            <span>Financial Audits</span>
+                        </a>
+                        <a href="#" onclick="activateSection('settings')" data-section="settings" class="sidebar-link">
+                            <i class="fas fa-sliders w-5"></i>
+                            <span>System Config</span>
+                        </a>
+                        <a href="#" onclick="activateSection('logout')" data-section="logout" class="sidebar-link logout mt-4 text-red-500">
+                            <i class="fas fa-power-off w-5"></i>
+                            <span>Terminate Session</span>
+                        </a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- CONTENT AREA -->
+            <div class="flex-1 min-w-0 overflow-y-auto custom-scrollbar pr-1">
+
+                <!-- SECTION: OVERVIEW -->
+                <div id="overview" class="admin-section space-y-6">
+                    <div class="dashboard-card p-6 sm:p-10 bg-accent-gradient text-white relative overflow-hidden border-none shadow-2xl reveal active">
+                        <div class="absolute inset-0 architectural-grid opacity-10 pointer-events-none"></div>
+                        <div class="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                            <div>
+                                <h2 class="text-3xl font-black tracking-tight mb-2 uppercase">Atelier Control Panel</h2>
+                                <p class="text-white/70 font-medium">Monitoring 12 Active Sites across Hosur & Bangalore</p>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20">
+                                <p class="text-[10px] font-black uppercase text-accent mb-1">Monthly Yield</p>
+                                <p class="text-2xl font-black">$42,850 <span class="text-xs text-green-400 ml-1">+14%</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="dashboard-card p-6 reveal active">
+                            <p class="text-secondary-text text-[10px] font-black uppercase tracking-widest mb-2">Total Inquiries</p>
+                            <p class="text-3xl font-black">284</p>
+                            <div class="mt-4 flex items-center gap-2 text-xs text-green-600 font-bold">
+                                <i class="fas fa-arrow-up"></i> +24% vs last month
+                            </div>
+                        </div>
+                        <div class="dashboard-card p-6 reveal active">
+                            <p class="text-secondary-text text-[10px] font-black uppercase tracking-widest mb-2">Completion Rate</p>
+                            <p class="text-3xl font-black">98.2%</p>
+                            <div class="mt-4 w-full h-1.5 bg-hover rounded-full overflow-hidden">
+                                <div class="h-full bg-primary-green w-[98%]"></div>
+                            </div>
+                        </div>
+                        <div class="dashboard-card p-6 reveal active">
+                            <p class="text-secondary-text text-[10px] font-black uppercase tracking-widest mb-2">Verified Leads</p>
+                            <p class="text-3xl font-black">56</p>
+                            <div class="mt-4 flex items-center gap-2 text-xs text-accent font-bold">
+                                <i class="fas fa-bolt"></i> 12 High-Priority
+                            </div>
+                        </div>
+                        <div class="dashboard-card p-6 reveal active">
+                            <p class="text-secondary-text text-[10px] font-black uppercase tracking-widest mb-2">Site Safety</p>
+                            <p class="text-3xl font-black">100%</p>
+                            <div class="mt-4 flex items-center gap-2 text-xs text-green-600 font-bold uppercase tracking-widest">
+                                <i class="fas fa-shield-alt"></i> Zero Incidents
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity Table -->
+                    <div class="dashboard-card p-6 sm:p-8 reveal active">
+                        <h3 class="font-black text-lg mb-6 uppercase tracking-tighter">Live Construction Feed</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-hover rounded-2xl border-l-4 border-accent">
+                                <div class="flex gap-4 items-center">
+                                    <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent"><i class="fas fa-check"></i></div>
+                                    <div>
+                                        <p class="font-bold text-sm">Phase 2 Handover: #BK-992</p>
+                                        <p class="text-[10px] text-secondary-text uppercase">Hosur Estate Project · 10 min ago</p>
+                                    </div>
+                                </div>
+                                <span class="status-badge completed">Approved</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 bg-hover rounded-2xl">
+                                <div class="flex gap-4 items-center">
+                                    <div class="w-10 h-10 rounded-xl bg-primary-green/10 flex items-center justify-center text-primary-green"><i class="fas fa-truck"></i></div>
+                                    <div>
+                                        <p class="font-bold text-sm">Material Transit: Italian Marble</p>
+                                        <p class="text-[10px] text-secondary-text uppercase">En Route to Site #442 · 1 hour ago</p>
+                                    </div>
+                                </div>
+                                <span class="status-badge pending">In Transit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<div id="content" class="admin-section hidden animate-fade-in">
+
+  <div class="dashboard-card p-6 sm:p-8">
+
+    <div class="flex justify-between items-center mb-8">
+      <h3 class="text-2xl font-black uppercase tracking-tighter">
+        Construction Logs
+      </h3>
+
+      <button class="bg-primary-green text-white px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest hover:bg-accent transition-all">
+        Add Log
+      </button>
+    </div>
+
+    <div class="space-y-4">
+
+      <!-- Log 1 -->
+      <div class="p-5 bg-hover rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+
+        <div class="flex gap-4 items-start">
+
+          <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent text-xl">
+            <i class="fas fa-hard-hat"></i>
+          </div>
+
+          <div>
+            <p class="font-bold text-sm">Foundation Work Completed</p>
+            <p class="text-xs text-secondary-text">
+              Site #442 · Hosur Residential Project
+            </p>
+            <p class="text-xs text-secondary-text italic mt-1">
+              Concrete foundation poured successfully. Structural inspection scheduled.
+            </p>
+          </div>
+
+        </div>
+
+        <span class="status-badge completed">Completed</span>
+
+      </div>
+
+
+      <!-- Log 2 -->
+      <div class="p-5 bg-hover rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+
+        <div class="flex gap-4 items-start">
+
+          <div class="w-12 h-12 rounded-xl bg-primary-green/10 flex items-center justify-center text-primary-green text-xl">
+            <i class="fas fa-truck"></i>
+          </div>
+
+          <div>
+            <p class="font-bold text-sm">Material Delivery</p>
+            <p class="text-xs text-secondary-text">
+              Site #218 · Bangalore Villa Project
+            </p>
+            <p class="text-xs text-secondary-text italic mt-1">
+              Italian marble and hardwood flooring delivered to site.
+            </p>
+          </div>
+
+        </div>
+
+        <span class="status-badge active">Active</span>
+
+      </div>
+
+
+      <!-- Log 3 -->
+      <div class="p-5 bg-hover rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+
+        <div class="flex gap-4 items-start">
+
+          <div class="w-12 h-12 rounded-xl bg-yellow-400/10 flex items-center justify-center text-yellow-500 text-xl">
+            <i class="fas fa-tools"></i>
+          </div>
+
+          <div>
+            <p class="font-bold text-sm">Interior Framing Started</p>
+            <p class="text-xs text-secondary-text">
+              Site #992 · Duplex Renovation
+            </p>
+            <p class="text-xs text-secondary-text italic mt-1">
+              Wall framing and ceiling structure installation underway.
+            </p>
+          </div>
+
+        </div>
+
+        <span class="status-badge pending">In Progress</span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<div id="messages" class="admin-section hidden animate-fade-in">
+
+  <div class="dashboard-card p-6 sm:p-8">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-8">
+      <h3 class="text-2xl font-black uppercase tracking-tighter">
+        Internal Communications
+      </h3>
+
+      <button class="bg-primary-green text-white px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest hover:bg-accent transition-all">
+        New Message
+      </button>
+    </div>
+
+    <!-- Messages List -->
+    <div class="space-y-4">
+
+      <!-- Message 1 -->
+      <div class="p-5 bg-hover rounded-2xl flex gap-4 items-start">
+
+        <div class="w-11 h-11 rounded-full bg-accent/20 flex items-center justify-center text-accent font-bold">
+          AM
+        </div>
+
+        <div class="flex-1">
+          <div class="flex justify-between items-center">
+            <p class="font-bold text-sm">Arjun Malhotra</p>
+            <span class="text-[10px] text-secondary-text uppercase">10 min ago</span>
+          </div>
+
+          <p class="text-xs text-secondary-text mt-1 italic">
+            Site #442 concrete inspection completed. Structural engineer approval received.
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- Message 2 -->
+      <div class="p-5 bg-hover rounded-2xl flex gap-4 items-start">
+
+        <div class="w-11 h-11 rounded-full bg-primary-green/20 flex items-center justify-center text-primary-green font-bold">
+          KR
+        </div>
+
+        <div class="flex-1">
+          <div class="flex justify-between items-center">
+            <p class="font-bold text-sm">Karan Reddy</p>
+            <span class="text-[10px] text-secondary-text uppercase">45 min ago</span>
+          </div>
+
+          <p class="text-xs text-secondary-text mt-1 italic">
+            Italian marble delivery scheduled tomorrow morning for Bangalore Villa Project.
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- Message 3 -->
+      <div class="p-5 bg-hover rounded-2xl flex gap-4 items-start">
+
+        <div class="w-11 h-11 rounded-full bg-yellow-400/20 flex items-center justify-center text-yellow-600 font-bold">
+          DS
+        </div>
+
+        <div class="flex-1">
+          <div class="flex justify-between items-center">
+            <p class="font-bold text-sm">Divya Sharma</p>
+            <span class="text-[10px] text-secondary-text uppercase">2 hours ago</span>
+          </div>
+
+          <p class="text-xs text-secondary-text mt-1 italic">
+            Client requested revised quotation for luxury kitchen remodel (Site #218).
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<div id="reports" class="admin-section hidden animate-fade-in">
+
+  <div class="dashboard-card p-6 sm:p-8">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-8">
+      <h3 class="text-2xl font-black uppercase tracking-tighter">
+        Financial Audits
+      </h3>
+
+      <button class="bg-primary-green text-white px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest hover:bg-accent transition-all">
+        Export Report
+      </button>
+    </div>
+
+
+    <!-- Finance Summary -->
+    <div class="grid md:grid-cols-3 gap-6 mb-10">
+
+      <div class="p-6 bg-hover rounded-2xl">
+        <p class="text-[10px] uppercase font-black tracking-widest text-secondary-text">Total Revenue</p>
+        <p class="text-3xl font-black mt-2 text-primary-green">$128,500</p>
+        <p class="text-xs text-green-600 font-bold mt-2">+12% This Month</p>
+      </div>
+
+      <div class="p-6 bg-hover rounded-2xl">
+        <p class="text-[10px] uppercase font-black tracking-widest text-secondary-text">Operational Costs</p>
+        <p class="text-3xl font-black mt-2 text-red-500">$64,200</p>
+        <p class="text-xs text-red-400 font-bold mt-2">Materials + Labor</p>
+      </div>
+
+      <div class="p-6 bg-hover rounded-2xl">
+        <p class="text-[10px] uppercase font-black tracking-widest text-secondary-text">Net Profit</p>
+        <p class="text-3xl font-black mt-2 text-accent">$64,300</p>
+        <p class="text-xs text-accent font-bold mt-2">After Expenses</p>
+      </div>
+
+    </div>
+
+
+    <!-- Recent Financial Records -->
+    <div>
+
+      <h4 class="font-black mb-6 uppercase text-sm tracking-widest">
+        Recent Financial Records
+      </h4>
+
+      <div class="space-y-4">
+
+        <!-- Record -->
+        <div class="flex justify-between items-center p-5 bg-hover rounded-2xl">
+
+          <div class="flex gap-4 items-center">
+            <div class="w-10 h-10 rounded-xl bg-primary-green/10 flex items-center justify-center text-primary-green">
+              <i class="fas fa-file-invoice-dollar"></i>
+            </div>
+
+            <div>
+              <p class="font-bold text-sm">Luxury Villa Renovation</p>
+              <p class="text-xs text-secondary-text">Invoice #INV-442 · Bangalore</p>
+            </div>
+          </div>
+
+          <span class="font-black text-primary-green">$18,400</span>
+
+        </div>
+
+
+        <!-- Record -->
+        <div class="flex justify-between items-center p-5 bg-hover rounded-2xl">
+
+          <div class="flex gap-4 items-center">
+            <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
+              <i class="fas fa-money-bill-wave"></i>
+            </div>
+
+            <div>
+              <p class="font-bold text-sm">Material Procurement</p>
+              <p class="text-xs text-secondary-text">Italian Marble Import</p>
+            </div>
+          </div>
+
+          <span class="font-black text-red-500">-$7,200</span>
+
+        </div>
+
+
+        <!-- Record -->
+        <div class="flex justify-between items-center p-5 bg-hover rounded-2xl">
+
+          <div class="flex gap-4 items-center">
+            <div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
+              <i class="fas fa-receipt"></i>
+            </div>
+
+            <div>
+              <p class="font-bold text-sm">Kitchen Remodel Payment</p>
+              <p class="text-xs text-secondary-text">Client Payment Received</p>
+            </div>
+          </div>
+
+          <span class="font-black text-primary-green">$9,800</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+                <!-- SECTION: USERS -->
+                <div id="users" class="admin-section hidden animate-fade-in">
+                    <div class="dashboard-card p-6 sm:p-8">
+                        <div class="flex justify-between items-center mb-8">
+                            <h3 class="text-2xl font-black uppercase tracking-tighter">User Directory</h3>
+                            <button class="bg-primary-green text-white px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest hover:bg-accent transition-all">Add Staff</button>
+                        </div>
+                        <div class="overflow-x-auto custom-scrollbar">
+                            <table class="w-full text-sm text-left min-w-[800px]">
+                                <thead class="border-b border-border text-secondary-text text-[10px] uppercase font-black tracking-widest opacity-50">
+                                    <tr>
+                                        <th class="pb-4 px-2">Identity</th>
+                                        <th class="pb-4 px-2">Designation</th>
+                                        <th class="pb-4 px-2">Status</th>
+                                        <th class="pb-4 px-2 text-right">Control</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-border/30">
+                                    <tr class="hover:bg-hover/50 transition-colors">
+                                        <td class="py-5 px-2">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center text-accent font-black text-xs">AM</div>
+                                                <div><p class="font-bold">Arjun Malhotra</p><p class="text-xs text-secondary-text">arjun.lead@buildnest.com</p></div>
+                                            </div>
+                                        </td>
+                                        <td class="py-5 px-2"><span class="px-3 py-1 bg-primary-green/10 text-primary-green rounded-full text-[10px] font-black uppercase">Lead Contractor</span></td>
+                                        <td class="py-5 px-2"><span class="status-badge active">On Site</span></td>
+                                        <td class="py-5 px-2 text-right">
+                                            <button class="text-accent mx-2 hover:scale-110 transition"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-500 mx-2 hover:scale-110 transition"><i class="fas fa-shield-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION: QUOTE REQUESTS -->
+                <div id="orders" class="admin-section hidden animate-fade-in">
+                    <div class="dashboard-card p-6 sm:p-8">
+                        <h3 class="text-2xl font-black uppercase tracking-tighter mb-8">Active Project Inquiries</h3>
+                        <div class="grid gap-4">
+                            <div class="p-6 bg-hover rounded-3xl flex flex-col md:flex-row justify-between items-center gap-4">
+                                <div class="flex gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xl font-black">JS</div>
+                                    <div>
+                                        <p class="font-bold">Johnathan Smith · Luxury Kitchen</p>
+                                        <p class="text-xs text-secondary-text italic">"Interested in custom quartz island and modular storage..."</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-4 items-center">
+                                    <span class="text-xs font-black uppercase text-accent">$12k Est.</span>
+                                    <button class="bg-primary-green text-white px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl">Prepare Proposal</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION: SETTINGS -->
+                <div id="settings" class="admin-section hidden animate-fade-in">
+                    <div class="dashboard-card p-6 sm:p-10">
+                        <h3 class="text-2xl font-black uppercase tracking-tighter mb-10">System Configuration</h3>
+                        <div class="space-y-8">
+                            <div class="flex items-center justify-between p-6 bg-hover rounded-3xl">
+                                <div>
+                                    <p class="font-bold uppercase text-xs tracking-widest text-primary-text">Automatic Site Logs</p>
+                                    <p class="text-xs text-secondary-text">Upload daily site progress photos to client dashboard</p>
+                                </div>
+                                <div class="w-12 h-6 bg-accent rounded-full p-1 cursor-pointer shadow-inner">
+                                    <div class="w-4 h-4 bg-white rounded-full ml-auto"></div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between p-6 bg-hover rounded-3xl opacity-50">
+                                <div>
+                                    <p class="font-bold uppercase text-xs tracking-widest text-primary-text">API Maintenance Mode</p>
+                                    <p class="text-xs text-secondary-text">Restrict front-end access during system updates</p>
+                                </div>
+                                <div class="w-12 h-6 bg-gray-300 rounded-full p-1 cursor-pointer">
+                                    <div class="w-4 h-4 bg-white rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECTION: LOGOUT -->
+                <div id="logout" class="admin-section hidden animate-fade-in">
+                    <div class="dashboard-card p-12 text-center max-w-lg mx-auto">
+                        <div class="w-24 h-24 bg-red-500/10 rounded-full flex items-center justify-center mx-auto mb-8 text-red-500 text-4xl shadow-inner">
+                            <i class="fas fa-power-off"></i>
+                        </div>
+                        <h2 class="text-3xl font-black uppercase tracking-tighter">Terminate Session?</h2>
+                        <p class="text-secondary-text mt-4 font-medium leading-relaxed italic">System surveillance will remain active, but admin controls will be locked.</p>
+                        <div class="mt-12 flex gap-4 justify-center">
+                            <a href="login.html" class="bg-red-500 text-white px-10 py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-red-500/20">Confirm Exit</a>
+                            <button onclick="activateSection('overview')" class="bg-hover px-10 py-4 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em]">Return</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SYSTEM FOOTER -->
+                <footer class="mt-12 text-center text-[10px] text-secondary-text border-t border-border pt-8 pb-12 w-full">
+                    <p class="uppercase tracking-[0.3em] font-black opacity-30">© 2026 Growwpark BuildNest · Internal Use Only · Sec_Protocol v4.2</p>
+                    <div class="flex justify-center gap-8 mt-4 font-bold uppercase opacity-60 text-[8px] tracking-[0.2em]">
+                        <span class="hover:text-accent cursor-pointer transition">Encrypted Logs</span>
+                        <span class="hover:text-accent cursor-pointer transition">Audit Trail</span>
+                        <span class="hover:text-accent cursor-pointer transition">Engineer Support</span>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            'use strict';
+            const htmlEl = document.documentElement;
+
+            // mobile menu logic
+            const menuToggle = document.getElementById('mobile-menu-toggle');
+            const closeSidebar = document.getElementById('close-sidebar');
+            const sidebar = document.getElementById('sidebar-container');
+            const overlay = document.getElementById('mobile-overlay');
+
+            function toggleMobileMenu(isOpen) {
+                if (isOpen) {
+                    sidebar.classList.remove('-translate-x-full');
+                    overlay.classList.add('active');
+                } else {
+                    sidebar.classList.add('-translate-x-full');
+                    overlay.classList.remove('active');
+                }
+            }
+            menuToggle?.addEventListener('click', () => toggleMobileMenu(true));
+            closeSidebar?.addEventListener('click', () => toggleMobileMenu(false));
+            overlay?.addEventListener('click', () => toggleMobileMenu(false));
+
+            // theme engine
+            const themeBtn = document.getElementById('theme-toggle-user');
+            function setTheme(theme) {
+                htmlEl.setAttribute('data-theme', theme);
+                localStorage.setItem('buildnest_admin_theme', theme);
+                if (theme === 'dark') htmlEl.classList.add('dark');
+                else htmlEl.classList.remove('dark');
+            }
+            setTheme(localStorage.getItem('buildnest_admin_theme') || 'light');
+            themeBtn?.addEventListener('click', () => {
+                const current = htmlEl.getAttribute('data-theme');
+                setTheme(current === 'light' ? 'dark' : 'light');
+            });
+
+            // RTL logic
+            const langBtn = document.getElementById('lang-toggle');
+            langBtn?.addEventListener('click', () => {
+                const currentDir = htmlEl.getAttribute('dir') || 'ltr';
+                const newDir = currentDir === 'ltr' ? 'rtl' : 'ltr';
+                htmlEl.setAttribute('dir', newDir);
+            });
+
+            // reveal scroll logic
+            function checkReveal() {
+                document.querySelectorAll('.reveal').forEach(el => {
+                    if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
+                });
+            }
+            window.addEventListener('scroll', checkReveal);
+            window.addEventListener('load', checkReveal);
+
+            // section activation engine
+            const sections = ['overview', 'users', 'content', 'orders', 'messages', 'reports', 'settings', 'logout'];
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            
+            window.activateSection = function(sectionId) {
+                sections.forEach(id => document.getElementById(id)?.classList.add('hidden'));
+                document.getElementById(sectionId)?.classList.remove('hidden');
+                
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.section === sectionId) link.classList.add('active');
+                });
+
+                if (window.innerWidth < 1024) toggleMobileMenu(false);
+            };
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (link.dataset.section) activateSection(link.dataset.section);
+                });
+            });
+
+            // auto reveal on start
+            setTimeout(checkReveal, 200);
+        })();
+    </script>
+</body>
+</html>
