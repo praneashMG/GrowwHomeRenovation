@@ -48,29 +48,23 @@
     </div>
 
     <div class="auth-card flex flex-col md:flex-row">
-<div class="hidden md:flex md:w-5/12 relative min-h-[580px] overflow-hidden">
+        <div class="hidden md:flex md:w-5/12 relative min-h-[580px] overflow-hidden">
+            <img src="assets/lo.png" class="absolute inset-0 w-full h-full object-cover" alt="Background">
 
-    <!-- BACKGROUND IMAGE -->
-    <img src="assets/lo.png"
-         class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-primary/90"></div>
 
-    <!-- DARK GREEN OVERLAY -->
-    <div class="absolute inset-0 bg-primary/90"></div>
-
-    <!-- GRID TEXTURE -->
-    <div class="absolute inset-0 architectural-grid opacity-10"></div>            <div class="relative z-10 p-10 flex flex-col justify-between h-full w-full">
-               <a href="index.html" class="flex items-center gap-2 shrink-0 group">
-    
-    <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg group-hover:scale-110 transition-transform">
-        <i class="fas fa-hammer text-lg"></i>
-    </span>
-
-    <div class="leading-tight">
-        <span class="block text-xl font-bold tracking-tight text-accent">Renovex</span>
-        <span class="block text-xs font-semibold text-accent uppercase tracking-widest">BuildNest</span>
-    </div>
-
-</a>
+            <div class="absolute inset-0 architectural-grid opacity-10"></div>
+            
+            <div class="relative z-10 p-10 flex flex-col justify-between h-full w-full">
+                <a href="index.html" class="flex items-center gap-2 shrink-0 group">
+                    <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg group-hover:scale-110 transition-transform">
+                        <i class="fas fa-hammer text-lg"></i>
+                    </span>
+                    <div class="leading-tight">
+                        <span class="block text-xl font-bold tracking-tight text-accent">Renovex</span>
+                        <span class="block text-xs font-semibold text-accent uppercase tracking-widest">BuildNest</span>
+                    </div>
+                </a>
                 <div>
                     <h2 class="text-4xl font-black text-white leading-tight mb-4 uppercase">Secure <br><span class="text-accent italic">Login</span></h2>
                     <p class="text-sm text-gray-300">Access your project dashboard and monitor structural updates in real-time.</p>
@@ -79,34 +73,33 @@
         </div>
 
         <div class="w-full md:w-7/12 p-8 lg:p-12 flex flex-col justify-center bg-white dark:bg-secondary">
-          <a href="index.html" class="md:hidden flex items-center gap-2 mb-8 justify-center shrink-0 group">
-    
-    <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg">
-        <i class="fas fa-hammer text-lg"></i>
-    </span>
-
-    <div class="leading-tight">
-        <span class="block text-xl font-bold tracking-tight text-accent">Renovex</span>
-        <span class="block text-xs font-semibold text-accent uppercase tracking-widest">BuildNest</span>
-    </div>
-
-</a>
+            <a href="index.html" class="md:hidden flex items-center gap-2 mb-8 justify-center shrink-0 group">
+                <span class="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white shadow-lg">
+                    <i class="fas fa-hammer text-lg"></i>
+                </span>
+                <div class="leading-tight">
+                    <span class="block text-xl font-bold tracking-tight text-accent">Renovex</span>
+                    <span class="block text-xs font-semibold text-accent uppercase tracking-widest">BuildNest</span>
+                </div>
+            </a>
 
             <div class="mb-8 text-center">
-                <h3 class="text-2xl font-black uppercase tracking-tight">Terminal Entry</h3>
+                <h3 class="text-2xl font-black uppercase tracking-tight">Welcome Back</h3>
                 <p class="text-[10px] opacity-50 uppercase tracking-[0.2em] mt-1 font-bold">Authorized Access Only</p>
             </div>
 
             <form onsubmit="handleAuth(event)" class="space-y-4">
                 <div>
-                    <label class="block text-[10px] font-black uppercase tracking-widest text-accent mb-1.5 px-1">Email Terminal</label>
-                    <input type="email" required class="input-field" placeholder="user@buildnest.io">
+                    <label class="block text-[10px] font-black uppercase tracking-widest text-accent mb-1.5 px-1">Email Address</label>
+                    <input type="email" required class="input-field" placeholder="name@company.com">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-black uppercase tracking-widest text-accent mb-1.5 px-1">Security Key</label>
+                    <label class="block text-[10px] font-black uppercase tracking-widest text-accent mb-1.5 px-1">Password</label>
                     <div class="relative">
                         <input type="password" required class="input-field pr-10" placeholder="••••••••">
-                        <button type="button" onclick="togglePass(this)" class="absolute right-3 top-1/2 -translate-y-1/2 opacity-40 hover:text-accent transition-all"><i class="fas fa-eye text-xs"></i></button>
+                        <button type="button" onclick="togglePass(this)" class="absolute right-3 top-1/2 -translate-y-1/2 opacity-40 hover:text-accent transition-all">
+                            <i class="fas fa-eye text-xs"></i>
+                        </button>
                     </div>
                     <div class="mt-2 text-right">
                         <a href="#" class="text-[9px] font-bold text-primary dark:text-accent hover:underline uppercase tracking-widest">Forgot Password?</a>
@@ -116,11 +109,13 @@
                 <div class="flex items-center px-1">
                     <label class="flex items-center gap-2 cursor-pointer group">
                         <input type="checkbox" class="w-3.5 h-3.5 rounded border-gray-300 accent-primary">
-                        <span class="text-[10px] uppercase font-bold tracking-widest opacity-70 group-hover:opacity-100 transition-opacity">Keep Session Active</span>
+                        <span class="text-[10px] uppercase font-bold tracking-widest opacity-70 group-hover:opacity-100 transition-opacity">Remember Me</span>
                     </label>
                 </div>
 
-                <button type="submit" class="btn-primary shadow-lg hover:scale-[1.01] transition-transform mt-2">Enter Terminal</button>
+                <button type="submit" class="btn-primary shadow-lg hover:scale-[1.01] transition-transform mt-2">
+                    Login
+                </button>
             </form>
 
             <div class="relative my-8">
@@ -145,7 +140,12 @@
             input.type = input.type === 'password' ? 'text' : 'password';
             btn.innerHTML = input.type === 'password' ? '<i class="fas fa-eye text-xs"></i>' : '<i class="fas fa-eye-slash text-xs"></i>';
         }
-        function handleAuth(e) { e.preventDefault(); e.target.querySelector('button').innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>'; setTimeout(() => window.location.href = 'index.html', 1000); }
+        function handleAuth(e) { 
+            e.preventDefault(); 
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Logging in...'; 
+            setTimeout(() => window.location.href = 'index.html', 1000); 
+        }
     </script>
 </body>
 </html>
