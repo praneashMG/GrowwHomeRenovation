@@ -100,6 +100,7 @@
   <a href="signup.html"
      class="inline-flex items-center gap-2 rounded-md bg-accent px-5 py-2 text-sm font-bold text-white hover:opacity-90 transition-transform active:scale-95 shadow-lg shadow-accent/20">
     <i class="fas fa-user-plus text-xs"></i>
+    <span>Register</span>
   </a>
 
 </div>
@@ -166,7 +167,6 @@
             <i class="fas fa-exchange-alt text-accent w-6"></i> Switch Direction (RTL)
           </button>
           <div class="mt-4 flex gap-3">
-
   <!-- LOGIN -->
   <a href="login.html"
      class="flex-1 flex items-center justify-center gap-2 rounded-lg border border-antiqueGold py-4 text-lg font-bold text-antiqueGold hover:bg-antiqueGold hover:text-blackMain transition-all">
@@ -454,41 +454,79 @@
       </div>
     </section>
 
-    <!-- (5) Our Achievements & Certifications Section -->
-    <section class="py-24 bg-primary relative overflow-hidden transition-colors duration-300">
-      <div class="absolute inset-0 architectural-grid opacity-[0.18] pointer-events-none"></div>
-      <div class="mx-auto max-w-7xl px-4 lg:px-8 relative z-10 text-left rtl:text-right">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
-          <div class="stat-card">
-            <p class="stat-number text-5xl lg:text-8xl font-black text-accent mb-3 drop-shadow-xl inline-block transition-transform duration-500">1200+</p>
-            <p class="text-white/70 font-black uppercase tracking-[0.3em] text-[10px]">Renovations Completed</p>
-          </div>
-          <div class="stat-card">
-            <p class="stat-number text-5xl lg:text-8xl font-black text-accent mb-3 drop-shadow-xl inline-block transition-transform duration-500">550+</p>
-            <p class="text-white/70 font-black uppercase tracking-[0.3em] text-[10px]">Contracting Projects</p>
-          </div>
-          <div class="stat-card">
-            <p class="stat-number text-5xl lg:text-8xl font-black text-accent mb-3 drop-shadow-xl inline-block transition-transform duration-500">25+</p>
-            <p class="text-white/70 font-black uppercase tracking-[0.3em] text-[10px]">Excellence Awards</p>
-          </div>
-          <div class="stat-card">
-            <p class="stat-number text-5xl lg:text-8xl font-black text-accent mb-3 drop-shadow-xl inline-block transition-transform duration-500">100%</p>
-            <p class="text-white/70 font-black uppercase tracking-[0.3em] text-[10px]">Safety Performance</p>
-          </div>
-        </div>
-        
-        <div class="mt-24 pt-16 border-t border-white/10">
-          <p class="text-center text-accent/60 font-black uppercase tracking-[0.3em] text-[10px] mb-12">Accredited Engineering & Renovation Standards</p>
-          <div class="flex flex-wrap justify-center items-center gap-16 opacity-40 grayscale group hover:grayscale-0 transition-all duration-700">
-             <i class="fas fa-stamp text-white text-5xl hover:scale-110 transition-transform"></i>
-             <i class="fas fa-certificate text-white text-5xl hover:scale-110 transition-transform"></i>
-             <i class="fas fa-shield-virus text-white text-5xl hover:scale-110 transition-transform"></i>
-             <i class="fas fa-award text-white text-5xl hover:scale-110 transition-transform"></i>
-             <i class="fas fa-building text-white text-5xl hover:scale-110 transition-transform"></i>
-          </div>
-        </div>
+  <!-- (5) Our Achievements & Certifications Section -->
+<section class="py-24 bg-primary relative overflow-hidden transition-colors duration-300">
+
+  <div class="absolute inset-0 architectural-grid opacity-[0.18] pointer-events-none"></div>
+
+  <div class="mx-auto max-w-7xl px-4 lg:px-8 relative z-10">
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-14 text-center">
+
+      <!-- Stat 1 -->
+      <div class="stat-card">
+        <p class="stat-number text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black text-accent mb-3 drop-shadow-xl transition-transform duration-500">
+          1200+
+        </p>
+        <p class="text-white/70 font-black uppercase tracking-[0.2em] text-[10px] sm:text-xs">
+          Renovations Completed
+        </p>
       </div>
-    </section>
+
+      <!-- Stat 2 -->
+      <div class="stat-card">
+        <p class="stat-number text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black text-accent mb-3 drop-shadow-xl transition-transform duration-500">
+          550+
+        </p>
+        <p class="text-white/70 font-black uppercase tracking-[0.2em] text-[10px] sm:text-xs">
+          Contracting Projects
+        </p>
+      </div>
+
+      <!-- Stat 3 -->
+      <div class="stat-card">
+        <p class="stat-number text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black text-accent mb-3 drop-shadow-xl transition-transform duration-500">
+          25+
+        </p>
+        <p class="text-white/70 font-black uppercase tracking-[0.2em] text-[10px] sm:text-xs">
+          Excellence Awards
+        </p>
+      </div>
+
+      <!-- Stat 4 -->
+      <div class="stat-card">
+        <p class="stat-number text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-black text-accent mb-3 drop-shadow-xl transition-transform duration-500">
+          100%
+        </p>
+        <p class="text-white/70 font-black uppercase tracking-[0.2em] text-[10px] sm:text-xs">
+          Safety Performance
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Certifications -->
+    <div class="mt-20 md:mt-24 pt-12 md:pt-16 border-t border-white/10">
+
+      <p class="text-center text-accent/60 font-black uppercase tracking-[0.3em] text-[10px] mb-10 md:mb-12">
+        Accredited Engineering & Renovation Standards
+      </p>
+
+      <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+
+        <i class="fas fa-stamp text-white text-3xl md:text-5xl hover:scale-110 transition-transform"></i>
+        <i class="fas fa-certificate text-white text-3xl md:text-5xl hover:scale-110 transition-transform"></i>
+        <i class="fas fa-shield-virus text-white text-3xl md:text-5xl hover:scale-110 transition-transform"></i>
+        <i class="fas fa-award text-white text-3xl md:text-5xl hover:scale-110 transition-transform"></i>
+        <i class="fas fa-building text-white text-3xl md:text-5xl hover:scale-110 transition-transform"></i>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
     <!-- (6) Why Clients Trust Our Company Section -->
 <section class="py-24 bg-offWhite dark:bg-secondary/50 transition-colors duration-300 relative overflow-hidden">      <div class="mx-auto max-w-7xl px-4 lg:px-8">

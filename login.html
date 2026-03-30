@@ -170,7 +170,12 @@
 
                         <div>
                             <label class="block text-[10px] font-bold uppercase tracking-widest mb-2 opacity-70">Password</label>
-                            <input type="password" required class="input-field w-full px-4 py-3.5 rounded-xl text-sm outline-none focus:ring-1 focus:ring-[#1B4332]" placeholder="••••••••">
+                            <div class="relative">
+                                <input type="password" id="login-password" required class="input-field w-full px-4 py-3.5 pr-12 rounded-xl text-sm outline-none focus:ring-1 focus:ring-[#1B4332]" placeholder="••••••••">
+                                <button type="button" onclick="togglePasswordVisibility('login-password', this)" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                            </div>
                             
                             <div class="flex justify-between items-center mt-3">
                                 <label class="flex items-center gap-2 cursor-pointer">
@@ -212,6 +217,20 @@
             const target = current === 'ltr' ? 'rtl' : 'ltr';
             html.setAttribute('dir', target);
             localStorage.setItem('dir', target);
+        }
+
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
         }
 
         // Initialize from local storage

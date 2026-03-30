@@ -176,16 +176,26 @@
 
     <div>
         <label class="block text-[10px] font-semibold uppercase tracking-wide mb-1 opacity-70">PASSWORD</label>
-        <input type="password" required
-            class="input-field w-full px-3 py-2 rounded-lg text-sm outline-none focus:ring-1 focus:ring-[#1B4332]"
-            placeholder="••••••••">
+        <div class="relative">
+            <input type="password" id="signup-password" required
+                class="input-field w-full px-3 py-2 pr-10 rounded-lg text-sm outline-none focus:ring-1 focus:ring-[#1B4332]"
+                placeholder="••••••••">
+            <button type="button" onclick="togglePasswordVisibility('signup-password', this)" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                <i class="far fa-eye"></i>
+            </button>
+        </div>
     </div>
 
     <div>
         <label class="block text-[10px] font-semibold uppercase tracking-wide mb-1 opacity-70">CONFIRM PASSWORD</label>
-        <input type="password" required
-            class="input-field w-full px-3 py-2 rounded-lg text-sm outline-none focus:ring-1 focus:ring-[#1B4332]"
-            placeholder="••••••••">
+        <div class="relative">
+            <input type="password" id="signup-confirm-password" required
+                class="input-field w-full px-3 py-2 pr-10 rounded-lg text-sm outline-none focus:ring-1 focus:ring-[#1B4332]"
+                placeholder="••••••••">
+            <button type="button" onclick="togglePasswordVisibility('signup-confirm-password', this)" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                <i class="far fa-eye"></i>
+            </button>
+        </div>
     </div>
 
     <div class="flex items-center gap-2 pt-1">
@@ -229,6 +239,20 @@
             const target = current === 'ltr' ? 'rtl' : 'ltr';
             html.setAttribute('dir', target);
             localStorage.setItem('dir', target);
+        }
+
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
         }
 
         // Initialize
